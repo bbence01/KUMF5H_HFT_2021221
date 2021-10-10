@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-KUMF5H_HFT_2021221",
+      "appliesTo": "KUMF5H_HFT_2021221/",
+      "type": "launch"
+    }
+  ]
+}
