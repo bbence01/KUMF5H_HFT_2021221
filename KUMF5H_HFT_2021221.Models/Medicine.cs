@@ -21,6 +21,11 @@ namespace KUMF5H_HFT_2021221.Models
 
         public int? BasePrice { get; set; }
 
+
+        [ForeignKey(nameof(Producer))]
+        public int ProducerID { get; set; }
+
+
         // travel proberty
         [NotMapped]
         public virtual ICollection<Patient> Patients { get; set; }
@@ -30,8 +35,6 @@ namespace KUMF5H_HFT_2021221.Models
         public virtual ICollection<Producer> Producers { get; set; }
         */
 
-        [ForeignKey(nameof(Producer))]
-        public int ProducerID { get; set; }
 
         [NotMapped]
         public virtual Producer Producer { get; set; }

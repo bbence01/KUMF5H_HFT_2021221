@@ -1,19 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="KUMF5H_HFT_2021221.mdf" />
-    <None Remove="KUMF5H_HFT_2021221_log.ldf" />
+    <None Remove="MedDb.mdf" />
+    <None Remove="MedDb_log.ldf" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="KUMF5H_HFT_2021221.mdf">
+    <Content Include="MedDb.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="KUMF5H_HFT_2021221_log.ldf">
+    <Content Include="MedDb_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

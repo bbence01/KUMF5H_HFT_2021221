@@ -21,6 +21,7 @@ namespace KUMF5H_HFT_2021221.Models
             [Required]
             public string Name { get; set; }
 
+
             // travel proberty
             [NotMapped]
             public virtual ICollection<Medicine> Medicines { get; set; }
