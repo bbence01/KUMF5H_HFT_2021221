@@ -8,7 +8,28 @@ using System.Threading.Tasks;
 
 namespace KUMF5H_HFT_2021221.Models
 {
+    [Table("Producer")]
     public class Producer
     {
+      
+        
+            [Key]
+            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+            public int Id { get; set; }
+
+            [MaxLength(20)]
+            [Required]
+            public string Name { get; set; }
+
+            // travel proberty
+            [NotMapped]
+            public virtual ICollection<Medicine> Medicines { get; set; }
+
+            public Producer()
+            {
+                Medicines = new HashSet<Medicine>();
+            }
+
+        
     }
 }
