@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace KUMF5H_HFT_2021221
+namespace KUMF5H_HFT_2012221.Client
 {
     class Program
     {
