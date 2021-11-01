@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KUMF5H_HFT_2021221.Logic
+namespace KUMF5H_HFT_2021221.Endpoint
 {
-    class Class1
+    class Endpoint
     {
     }
 }

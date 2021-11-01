@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KUMF5H_HFT_2021221.Test
 {
-    class Class1
+    class Test
     {
     }
 }
