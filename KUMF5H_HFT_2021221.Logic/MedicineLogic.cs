@@ -44,8 +44,11 @@ namespace KUMF5H_HFT_2021221.Logic
             Medicine GetOne(int id);
             IList<Medicine> GetAll();
             void ChangePrice(int id, int newPrice);
-            IList<AverageResult> GetProducerAverages();
-            void Create(Medicine newCar);
+        //  IList<AverageResult> GetProducerAverages();
+
+        IEnumerable<AverageResult> GetProducerAverages();
+
+        void Create(Medicine newCar);
             void Delete(Medicine forDelete);
         }
 
@@ -79,6 +82,7 @@ namespace KUMF5H_HFT_2021221.Logic
                 return medicineRepo.GetAll().ToList();
             }
 
+        /*
             public IList<AverageResult> GetProducerAverages()
             {
                 var q = from medicine in medicineRepo.GetAll()
@@ -90,8 +94,20 @@ namespace KUMF5H_HFT_2021221.Logic
                         };
                 return q.ToList();
             }
+        /*/
+        public IEnumerable<AverageResult> GetProducerAverages()
+        {
+            var q = from medicine in medicineRepo.GetAll()
+                    group medicine by new { medicine.ProducerID, medicine.Producer.Name } into g
+                    select new AverageResult()
+                    {
+                        ProducerName = g.Key.Name,
+                        AveragePrice = g.Average(x => x.BasePrice) ?? 0
+                    };
+            return q.ToList().AsEnumerable();
+        }
 
-            public Medicine GetOne(int id)
+        public Medicine GetOne(int id)
             {
                 return medicineRepo.GetOne(id);
             }
