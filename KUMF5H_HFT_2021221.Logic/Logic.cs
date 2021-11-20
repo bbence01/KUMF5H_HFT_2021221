@@ -10,7 +10,6 @@ namespace KUMF5H_HFT_2021221.Logic
     class Logic
     {
 
-
     }
 }
 

@@ -39,18 +39,7 @@ namespace KUMF5H_HFT_2021221.Logic
         }
 
 
-        public interface IMedicineLogic
-        {
-            Medicine GetOne(int id);
-            IList<Medicine> GetAll();
-            void ChangePrice(int id, int newPrice);
-        //  IList<AverageResult> GetProducerAverages();
-
-        IEnumerable<AverageResult> GetProducerAverages();
-
-        void Create(Medicine newCar);
-            void Delete(Medicine forDelete);
-        }
+       
 
         public class MedicineLogic : IMedicineLogic
         {
@@ -60,7 +49,14 @@ namespace KUMF5H_HFT_2021221.Logic
             {
                 medicineRepo.Delete(forDelete);
             }
-            public void Create(Medicine newMedicine)
+
+
+        public void Delete(int id)
+        {
+            medicineRepo.Delete(id);
+        }
+
+        public void Create(Medicine newMedicine)
             {
                 if (newMedicine.ProducerID < 1)
                     throw new ArgumentException(nameof(newMedicine), "Producer id must be positive");
@@ -112,7 +108,14 @@ namespace KUMF5H_HFT_2021221.Logic
                 return medicineRepo.GetOne(id);
             }
 
+        public void Update(Medicine updated)
+        {
+            medicineRepo.Update(updated);
         }
 
     }
+
+  
+
+}
 

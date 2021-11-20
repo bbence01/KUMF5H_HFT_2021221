@@ -7,15 +7,7 @@ using System.Linq;
 
 namespace KUMF5H_HFT_2021221.Logic
 {
-    public interface IPatientLogic
-    {
-        IList<Patient> GetAll();
-        Patient GetOne(int id);
-        void ChangePatientName(int id, string newPatientName);
-        void Create(Patient newPatient);
-        void Delete(Patient forDelete);
-    }
-
+  
     public class PatientLogic : IPatientLogic
     {
         IPatientLogic patientRepository;
@@ -35,6 +27,11 @@ namespace KUMF5H_HFT_2021221.Logic
             patientRepository.Create(newBrand);
         }
 
+        public void Delete(int id)
+        {
+            patientRepository.Delete(id);
+        }
+
         public void Delete(Patient forDelete)
         {
             patientRepository.Delete(forDelete);
@@ -48,6 +45,11 @@ namespace KUMF5H_HFT_2021221.Logic
         public Patient GetOne(int id)
         {
             return patientRepository.GetOne(id);
+        }
+
+        public void Update(Patient value)
+        {
+            patientRepository.Update(value);
         }
     }
 }

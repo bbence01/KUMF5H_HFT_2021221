@@ -25,6 +25,8 @@ namespace KUMF5H_HFT_2021221.Repository
     {
         //update
         void ChangePrice(int id, int newPrice);
+        void Update(Medicine updated);
+        void Delete(int id);
     }
 
     public interface IPatientRepository : IRepository<Patient>
