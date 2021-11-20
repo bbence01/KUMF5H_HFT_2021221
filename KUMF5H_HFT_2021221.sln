@@ -28,8 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{BD1407
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KUMF5H_HFT_2021221.Client", "KUMF5H_HFT_2021221.Client\KUMF5H_HFT_2021221.Client.csproj", "{623DEE96-7122-4377-87E3-510D97BFFE39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KUMF5H_HFT_2021.Tests", "TestMed\KUMF5H_HFT_2021.Tests.csproj", "{33F02D3B-F628-48CD-8D7A-061C88DADF7F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,10 +62,6 @@ Global
 		{623DEE96-7122-4377-87E3-510D97BFFE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{623DEE96-7122-4377-87E3-510D97BFFE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{623DEE96-7122-4377-87E3-510D97BFFE39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33F02D3B-F628-48CD-8D7A-061C88DADF7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33F02D3B-F628-48CD-8D7A-061C88DADF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33F02D3B-F628-48CD-8D7A-061C88DADF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33F02D3B-F628-48CD-8D7A-061C88DADF7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -25,7 +25,12 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void Create(Producer newProducer)
         {
+            if (newProducer.Name !=null)
+                throw new ArgumentException(nameof(newProducer), "Name is needed");
             producerRepository.Create(newProducer);
+
+
+
         }
 
         public void Delete(Producer forDelete)

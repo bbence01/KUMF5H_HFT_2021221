@@ -22,9 +22,13 @@ namespace KUMF5H_HFT_2021221.Logic
             patientRepository.ChangePatientName(id, newPatientName);
         }
 
-        public void Create(Patient newBrand)
+        public void Create(Patient newPatient)
         {
-            patientRepository.Create(newBrand);
+            patientRepository.Create(newPatient);
+
+            if (newPatient.MedicineID < 1)
+                throw new ArgumentException(nameof(newPatient), "Medicine id must be positive");
+            patientRepository.Create(newPatient);
         }
 
         public void Delete(int id)

@@ -23,9 +23,19 @@ namespace KUMF5H_HFT_2021221.Repository
                 throw new InvalidOperationException("Not found");
         }
 
+        public override void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public override Producer GetOne(int id)
         {
             return GetAll().SingleOrDefault(producer => producer.Id == id);
+        }
+
+        public override void Update(Producer updated)
+        {
+            throw new NotImplementedException();
         }
     }
 

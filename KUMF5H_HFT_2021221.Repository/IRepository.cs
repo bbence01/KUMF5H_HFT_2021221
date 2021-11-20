@@ -12,8 +12,10 @@ namespace KUMF5H_HFT_2021221.Repository
         T GetOne(int id); //Read
         IQueryable<T> GetAll(); //Read
         void Delete(T entity);
+        void Delete(int id);
         void Create(T entity);
-        // !! NO !! Update
+
+        void Update(T updated);
     }
 
     public interface IProducerReposiotory : IRepository<Producer>
@@ -25,8 +27,7 @@ namespace KUMF5H_HFT_2021221.Repository
     {
         //update
         void ChangePrice(int id, int newPrice);
-        void Update(Medicine updated);
-        void Delete(int id);
+        
     }
 
     public interface IPatientRepository : IRepository<Patient>

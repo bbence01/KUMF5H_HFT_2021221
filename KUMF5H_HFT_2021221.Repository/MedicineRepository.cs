@@ -25,5 +25,20 @@ namespace KUMF5H_HFT_2021221.Repository
         {
             return GetAll().SingleOrDefault(x => x.Id == id);
         }
+
+        public override void Delete(int id)
+        {
+            Delete(GetOne(id));
+        }
+
+        public override void Update(Medicine updated)
+        {
+            var forUpdadte = GetOne(updated.Id);
+            forUpdadte.ProducerID = updated.ProducerID;
+            forUpdadte.BasePrice = updated.BasePrice;
+            forUpdadte.Name = updated.Name;
+            
+            ctx.SaveChanges();
+        }
     }
 }
