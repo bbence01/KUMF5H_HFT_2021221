@@ -10,9 +10,9 @@ namespace KUMF5H_HFT_2021221.Logic
   
     public class PatientLogic : IPatientLogic
     {
-        IPatientLogic patientRepository;
+        IPatientRepository patientRepository;
 
-        public PatientLogic(IPatientLogic patientRepository)
+        public PatientLogic(IPatientRepository patientRepository)
         {
             this.patientRepository = patientRepository;
         }

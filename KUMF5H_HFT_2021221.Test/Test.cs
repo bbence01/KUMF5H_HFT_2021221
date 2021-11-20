@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 
 
-namespace KUMF5H_HFT_2021221.Tests
+namespace KUMF5H_HFT_2021221.Test
 {
 
     class Test
@@ -22,7 +22,8 @@ namespace KUMF5H_HFT_2021221.Tests
 
 
         Mock<IMedicineRepository> mockMedicineRepository = new Mock<IMedicineRepository>();
-        Mock<IPatientRepository> mocPatientRepository = new Mock<IPatientRepository>();
+        Mock<IPatientRepository> mockPatientRepository = new Mock<IPatientRepository>();
+        Mock<IProducerReposiotory> mockProducerRepository = new Mock<IProducerReposiotory>();
         MedicineLogic medLogic;
         PatientLogic patientLogic;
         Producerlogic producerLogic;
@@ -30,11 +31,15 @@ namespace KUMF5H_HFT_2021221.Tests
         public Test()
         {
             medLogic = new MedicineLogic(mockMedicineRepository.Object);
-            //patientLogic = new PatientLogic(mocPatientRepository.Object);
-
-            Producer pfizer = new Producer() { Name = "Pfizer" };
+            patientLogic = new PatientLogic(mockPatientRepository.Object);
+            producerLogic = new Producerlogic(mockProducerRepository.Object); 
 
             Medicine xanil = new Medicine() { Name = "Xanil" };
+            Medicine covax = new Medicine() { Name = "Covax" };
+
+            Producer pfizer = new Producer() { Name = "Pfizer", Medicines= new List<Medicine> { xanil,covax } };
+
+           
 
 
             mockMedicineRepository.Setup(medRepo => medRepo.Create(It.IsAny<Medicine>()));
@@ -59,19 +64,53 @@ namespace KUMF5H_HFT_2021221.Tests
                 );
 
 
-
-            mocPatientRepository.Setup(patientRepo => patientRepo.Create(It.IsAny<Patient>()));
-            mocPatientRepository.Setup(patientRepo => patientRepo.GetAll()).Returns(
+            
+            mockPatientRepository.Setup(patientRepo => patientRepo.Create(It.IsAny<Patient>()));
+            mockPatientRepository.Setup(patientRepo => patientRepo.GetAll()).Returns(
                 new List<Patient>
                 {
                     new Patient()
                     {
                         Illness= "Headache",
                         Medicine = xanil
-                        
-                        
-                        
+
+
+
+                     },
+                    new Patient()
+                    {
+                        Illness= "Covid",
+                        Medicine = covax
+
+
+
                     }
+
+
+
+                }.AsQueryable()
+
+                );
+            mockProducerRepository.Setup(producerRep => producerRep.Create(It.IsAny<Producer>()));
+            mockProducerRepository.Setup(producerRep => producerRep.GetAll()).Returns(
+                new List<Producer>
+                {
+                    new Producer(){
+                     Name = "Pfizer",
+                        Medicines = new List<Medicine> {
+                        new Medicine() { Name = "Covax" },
+                        new Medicine() { Name = "Xalin" }
+                        }
+
+                },
+                    new Producer(){
+                     Name = "Béres",
+                        Medicines = new List<Medicine> {
+                        new Medicine() { Name = "Novirin" },
+                        new Medicine() { Name = "Avil" }
+                        }
+
+                }
 
 
 
@@ -81,6 +120,7 @@ namespace KUMF5H_HFT_2021221.Tests
 
         }
 
+        
 
         [TestCase(1)]
         [TestCase(10)]
@@ -117,7 +157,8 @@ namespace KUMF5H_HFT_2021221.Tests
             Assert.That(
                 () =>
                 {
-                    patientLogic.Create(new Patient() { Illness = "yes", MedicineID = medicineId });
+                    patientLogic.Create(new Patient() { Illness = "yes", MedicineID = medicineId , Medicine = new Medicine() { Name = "Covax" }
+                });
                 },
                 Throws.Nothing
                 );
@@ -130,7 +171,8 @@ namespace KUMF5H_HFT_2021221.Tests
             Assert.That(
                 () =>
                 {
-                    patientLogic.Create(new Patient() { Illness = "no", MedicineID = medicineId });
+                    patientLogic.Create(new Patient() { Illness = "no", MedicineID = medicineId , Medicine = new Medicine() { Name = "Covax" }
+                });
                 },
                 Throws.Exception
                 );
@@ -140,25 +182,42 @@ namespace KUMF5H_HFT_2021221.Tests
         [TestCase("Xamil")]
         [TestCase("XAMILDHJSAKJSAGHJGDSJH")]
         [TestCase("123weJHKSDJH")]
-        public void TestCreateValidProducer(string producername)
+        public void TestCreateValidProducer(string producerName)
         {
+            Medicine xanil = new Medicine() { Name = "Xanil" };
+            Medicine covax = new Medicine() { Name = "Covax" };
+
+            
+
             Assert.That(
                 () =>
                 {
-                    producerLogic.Create(new Producer() { Name = producername });
+                    producerLogic.Create(new Producer()
+                    {
+                      Name = producerName,
+                      Medicines= new List<Medicine> { xanil, covax }
+
+                    
+                    });
                 },
                 Throws.Nothing
                 );
         }
+
         [TestCase("")]
-        [TestCase(1)]
-        [TestCase()]
+        
         public void TestCreateInValidProducer(string producername)
         {
             Assert.That(
                 () =>
                 {
-                    producerLogic.Create(new Producer() { Name = producername });
+                    producerLogic.Create(new Producer() {  
+                        Name = producername, 
+                        Medicines = new List<Medicine> {
+                        new Medicine() { Name = "Covax" },
+                        new Medicine() { Name = "Xalin" }
+
+                } });
                 },
                 Throws.Exception
                 );

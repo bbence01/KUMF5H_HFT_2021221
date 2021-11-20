@@ -11,9 +11,9 @@ namespace KUMF5H_HFT_2021221.Logic
 
     public class Producerlogic : IProducerLogic
     {
-        IProducerLogic producerRepository;
+        IProducerReposiotory producerRepository;
 
-        public Producerlogic(IProducerLogic producerRepository)
+        public Producerlogic(IProducerReposiotory producerRepository)
         {
             this.producerRepository = producerRepository;
         }
@@ -25,7 +25,7 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void Create(Producer newProducer)
         {
-            if (newProducer.Name !=null)
+            if (newProducer.Name ==null||newProducer.Name =="")
                 throw new ArgumentException(nameof(newProducer), "Name is needed");
             producerRepository.Create(newProducer);
 
