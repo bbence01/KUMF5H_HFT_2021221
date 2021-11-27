@@ -14,6 +14,46 @@ namespace KUMF5H_HFT_2021221_Endpoint.Controllers
     [ApiController]
     public class ProducerController : ControllerBase
     {
-        
+        IProducerLogic pl;
+
+        public ProducerController(IProducerLogic pl)
+        {
+            this.pl = pl;
+        }
+
+        // GET: api/<ProducerController>
+        [HttpGet]
+        public IEnumerable<Producer> Get()
+        {
+            return pl.GetAll();
+        }
+
+        // GET api/<ProducerController>/5
+        [HttpGet("{id}")]
+        public Producer Get(int id)
+        {
+            return pl.GetOne(id);
+        }
+
+        // POST api/<ProducerController>
+        [HttpPost]
+        public void Post([FromBody] Producer value)
+        {
+            pl.Create(value);
+        }
+
+        // PUT api/<ProducerController>/5
+        [HttpPut]
+        public void Put([FromBody] Producer value)
+        {
+            pl.Update(value);
+        }
+
+        // DELETE api/<ProducerController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            pl.Delete(id);
+        }
     }
 }
