@@ -11,11 +11,13 @@ namespace KUMF5H_HFT_2021221.Logic
     public interface IMedicineLogic 
     {
         Medicine GetOne(int id);
-        IList<Medicine> GetAll();
+        IEnumerable<Medicine> GetAll();
         void ChangePrice(int id, int newPrice);
       
 
         IEnumerable<AverageResult> GetProducerAverages();
+
+        IEnumerable<HighestResult> GetProducerMax();
 
         double AveragePrice();
 

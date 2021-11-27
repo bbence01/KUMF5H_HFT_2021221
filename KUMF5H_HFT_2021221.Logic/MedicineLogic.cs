@@ -43,24 +43,35 @@ namespace KUMF5H_HFT_2021221.Logic
                 medicineRepo.ChangePrice(id, newPrice);
             }
 
-            public IList<Medicine> GetAll()
+            public IEnumerable<Medicine> GetAll()
             {
                 return medicineRepo.GetAll().ToList();
             }
 
-        /*
-            public IList<AverageResult> GetProducerAverages()
+       
+        public Medicine GetOne(int id)
             {
-                var q = from medicine in medicineRepo.GetAll()
-                        group medicine by new { medicine.ProducerID, medicine.Name } into g
-                        select new AverageResult()
-                        {
-                            ProducerName = g.Key.Name,
-                            AveragePrice = g.Average(x => x.BasePrice) ?? 0
-                        };
-                return q.ToList();
+                return medicineRepo.GetOne(id);
             }
-        /*/
+
+        public void Update(Medicine updated)
+        {
+            medicineRepo.Update(updated);
+        }
+
+        /*
+           public IList<AverageResult> GetProducerAverages()
+           {
+               var q = from medicine in medicineRepo.GetAll()
+                       group medicine by new { medicine.ProducerID, medicine.Name } into g
+                       select new AverageResult()
+                       {
+                           ProducerName = g.Key.Name,
+                           AveragePrice = g.Average(x => x.BasePrice) ?? 0
+                       };
+               return q.ToList();
+           }
+       /*/
         public IEnumerable<AverageResult> GetProducerAverages()
         {
             var q = from medicine in medicineRepo.GetAll()
@@ -73,21 +84,38 @@ namespace KUMF5H_HFT_2021221.Logic
             return q;
         }
 
+
+
+
         public double AveragePrice()
         {
             return (double)medicineRepo.GetAll().Average(x => x.BasePrice);
         }
 
-        public Medicine GetOne(int id)
-            {
-                return medicineRepo.GetOne(id);
-            }
 
-        public void Update(Medicine updated)
+        public IEnumerable<HighestResult> GetProducerMax()
         {
-            medicineRepo.Update(updated);
-        }
 
+            /*
+            var q = from medicine in medicineRepo.GetAll()
+                    group medicine by new { medicine.ProducerID, medicine.Producer.Name } into g
+                    select new HighestResult()
+                    {
+                        ProducerName = g.Key.Name,
+                        HighestPrice = g.Max(x => x.BasePrice) ?? 0
+                    };
+            return q;*/
+            var q = from medicine in medicineRepo.GetAll()
+                    group medicine by new { medicine.ProducerID, medicine.Producer.Name } into g
+                    select new AverageResult()
+                    {
+                        ProducerName = g.Key.Name,
+                        AveragePrice = g.Average(x => x.BasePrice) ?? 0
+                    };
+            return q;
+
+
+        }
     }
 
   

@@ -28,9 +28,15 @@ namespace KUMF5H_HFT_2021221_Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<AverageResult> AverageByBrands()
+        public IEnumerable<AverageResult> AvarageByProducers()
         {
             return ml.GetProducerAverages();
+        }
+
+        [HttpGet]
+        public IEnumerable<HighestResult> HighestMedicineByProducer()
+        {
+            return ml.GetProducerMax();
         }
     }
 }

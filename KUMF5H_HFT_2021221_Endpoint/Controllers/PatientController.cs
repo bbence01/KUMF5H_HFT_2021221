@@ -21,14 +21,14 @@ namespace KUMF5H_HFT_2021221_Endpoint.Controllers
         }
 
 
-        // GET: /car
+        // GET: /patient
         [HttpGet]
         public IEnumerable<Patient> Get()
         {
             return pl.GetAll();
         }
 
-        // GET /car/5
+        // GET /patient/5
         [HttpGet("{id}")]
         public Patient Get(int id)
         {

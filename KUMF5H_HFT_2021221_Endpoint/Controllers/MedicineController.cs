@@ -20,14 +20,14 @@ namespace KUMF5H_HFT_2021221_Endpoint.Controllers
             this.ml = ml;
         }
 
-        // GET: /Medicine       
+        // GET: /medicine       
         [HttpGet]
         public IEnumerable<Medicine> Get()
         {
             return ml.GetAll();
         }
 
-        // GET /Medicine/5
+        // GET /medicine/5
         [HttpGet("{id}")]
         public Medicine Get(int id)
         {

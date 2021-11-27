@@ -10,7 +10,7 @@ namespace KUMF5H_HFT_2021221.Logic
 {
     public interface IProducerLogic
     {
-        IList<Producer> GetAll();
+        IEnumerable<Producer> GetAll();
         Producer GetOne(int id);
         void ChangeProducerName(int id, string newProducerName);
 

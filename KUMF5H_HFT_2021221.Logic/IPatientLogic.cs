@@ -10,13 +10,17 @@ namespace KUMF5H_HFT_2021221.Logic
 {
     public interface IPatientLogic
     {
-        IList<Patient> GetAll();
+        IEnumerable<Patient> GetAll();
         Patient GetOne(int id);
         void ChangePatientName(int id, string newPatientName);
         void Create(Patient newPatient);
         void Update(Patient updated);
         void Delete(Patient forDelete);
         void Delete(int id);
+
+      //  IEnumerable<AverageResult> GetProducerAverages();
+
+
     }
 
 }

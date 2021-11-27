@@ -15,12 +15,7 @@ namespace KUMF5H_HFT_2021221.Data
         public virtual DbSet<Medicine> Medicines { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
 
-        public MedDbContext()
-        {
-            
-            this.Database.EnsureCreated();
-
-        }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -84,6 +79,13 @@ namespace KUMF5H_HFT_2021221.Data
             modelBuilder.Entity<Producer>().HasData(richter, pfizer, beres);
             modelBuilder.Entity<Medicine>().HasData(richter1, richter2, richter3, richter4, pfizer1, pfizer2, pfizer3, beres1, beres2);
             modelBuilder.Entity<Patient>().HasData(bence, dani, krisztian);
+        }
+
+        public MedDbContext()
+        {
+
+            this.Database.EnsureCreated();
+
         }
 
     }

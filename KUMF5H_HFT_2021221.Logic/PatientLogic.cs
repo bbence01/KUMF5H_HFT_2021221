@@ -41,7 +41,7 @@ namespace KUMF5H_HFT_2021221.Logic
             patientRepository.Delete(forDelete);
         }
 
-        public IList<Patient> GetAll()
+        public IEnumerable<Patient> GetAll()
         {
             return patientRepository.GetAll().ToList();
         }

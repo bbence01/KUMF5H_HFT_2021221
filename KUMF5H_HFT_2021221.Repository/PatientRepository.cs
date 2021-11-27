@@ -14,7 +14,7 @@ namespace KUMF5H_HFT_2021221.Repository
         {
         }
 
-        public void ChangePatientName(int id, string newBrandName)
+        public void ChangePatientName(int id, string newPatientName)
         {
             var result = GetOne(id);
             if (result == null)

@@ -44,7 +44,7 @@ namespace KUMF5H_HFT_2021221.Logic
             producerRepository.Delete(id);
         }
 
-        public IList<Producer> GetAll()
+        public IEnumerable<Producer> GetAll()
         {
             return producerRepository.GetAll().ToList();
         }
