@@ -24,7 +24,7 @@ namespace KUMF5H_HFT_2021221.Logic
 
         double AveragePrice();
 
-        void Create(Medicine newCar);
+        void Create(Medicine newMed);
         void Update(Medicine updated);
         void Delete(Medicine forDelete);
         void Delete(int id);

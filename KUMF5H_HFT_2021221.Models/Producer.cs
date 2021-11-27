@@ -22,8 +22,7 @@ namespace KUMF5H_HFT_2021221.Models
             [Required]
             public string ProducerName { get; set; }
 
-        [Required]
-        [MaxLength(20)]
+       
         public string Location { get; set; }
 
 
