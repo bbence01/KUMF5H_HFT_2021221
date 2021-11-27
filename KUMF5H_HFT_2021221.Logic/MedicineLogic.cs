@@ -96,7 +96,7 @@ namespace KUMF5H_HFT_2021221.Logic
         public IEnumerable<HighestResult> GetProducerMax()
         {
 
-            /*
+            
             var q = from medicine in medicineRepo.GetAll()
                     group medicine by new { medicine.ProducerID, medicine.Producer.Name } into g
                     select new HighestResult()
@@ -104,15 +104,8 @@ namespace KUMF5H_HFT_2021221.Logic
                         ProducerName = g.Key.Name,
                         HighestPrice = g.Max(x => x.BasePrice) ?? 0
                     };
-            return q;*/
-            var q = from medicine in medicineRepo.GetAll()
-                    group medicine by new { medicine.ProducerID, medicine.Producer.Name } into g
-                    select new AverageResult()
-                    {
-                        ProducerName = g.Key.Name,
-                        AveragePrice = g.Average(x => x.BasePrice) ?? 0
-                    };
             return q;
+           
 
 
         }
