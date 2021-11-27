@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KUMF5H_HFT_2021221.Data
 {
-    class MedDbContext: DbContext
+   public class MedDbContext: DbContext
     {
         public virtual DbSet<Producer> Producers { get; set; }
         public virtual DbSet<Medicine> Medicines { get; set; }
@@ -17,7 +17,7 @@ namespace KUMF5H_HFT_2021221.Data
 
         public MedDbContext()
         {
-            // this.Database.EnsureDeleted();
+            
             this.Database.EnsureCreated();
 
         }
@@ -75,7 +75,7 @@ namespace KUMF5H_HFT_2021221.Data
 
             Patient bence = new Patient() { Id = 1, MedicineID = richter1.Id, Illness = "Nátha" };
             Patient dani = new Patient() { Id = 2, MedicineID = pfizer1.Id, Illness = "Covid" };
-            Patient krisztian = new Patient() { Id = 2, MedicineID = beres1.Id, Illness = "Izületi_fájdalom" };
+            Patient krisztian = new Patient() { Id = 3, MedicineID = beres1.Id, Illness = "Izületi_fájdalom" };
 
 
 

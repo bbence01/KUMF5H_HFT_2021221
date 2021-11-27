@@ -13,6 +13,7 @@ namespace KUMF5H_HFT_2021221.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("user_id", TypeName = "int")]
         public int Id { get; set; }
 
         [MaxLength(20)]

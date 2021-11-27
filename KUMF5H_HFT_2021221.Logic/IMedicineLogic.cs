@@ -13,9 +13,11 @@ namespace KUMF5H_HFT_2021221.Logic
         Medicine GetOne(int id);
         IList<Medicine> GetAll();
         void ChangePrice(int id, int newPrice);
-        //  IList<AverageResult> GetProducerAverages();
+      
 
         IEnumerable<AverageResult> GetProducerAverages();
+
+        double AveragePrice();
 
         void Create(Medicine newCar);
         void Update(Medicine updated);

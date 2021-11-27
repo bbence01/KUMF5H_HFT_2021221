@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace KUMF5H_HFT_2021221.Models
@@ -25,6 +26,7 @@ namespace KUMF5H_HFT_2021221.Models
         public int MedicineID { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Medicine Medicine { get; set; }
     }
 }

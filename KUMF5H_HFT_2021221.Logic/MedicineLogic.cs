@@ -9,37 +9,7 @@ namespace KUMF5H_HFT_2021221.Logic
 {  
 
 
-        public class AverageResult
-        {
-            public string ProducerName { get; set; }
-            public double AveragePrice { get; set; }
-
-            public override bool Equals(object obj)
-            {
-                if (obj is AverageResult)
-                {
-                    var other = obj as AverageResult;
-                    return this.AveragePrice == other.AveragePrice && this.ProducerName == other.ProducerName; // close
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            public override int GetHashCode()
-            {
-                return this.ProducerName.GetHashCode() + (int)this.AveragePrice;
-            }
-
-            public override string ToString()
-            {
-                return $"MedicineName={ProducerName}, AveragePrice={AveragePrice}";
-            }
-        }
-
-
-       
+              
 
         public class MedicineLogic : IMedicineLogic
         {
@@ -100,7 +70,12 @@ namespace KUMF5H_HFT_2021221.Logic
                         ProducerName = g.Key.Name,
                         AveragePrice = g.Average(x => x.BasePrice) ?? 0
                     };
-            return q.ToList().AsEnumerable();
+            return q;
+        }
+
+        public double AveragePrice()
+        {
+            return (double)medicineRepo.GetAll().Average(x => x.BasePrice);
         }
 
         public Medicine GetOne(int id)

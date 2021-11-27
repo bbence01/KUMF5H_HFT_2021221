@@ -25,7 +25,8 @@ namespace KUMF5H_HFT_2021221.Repository
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            ctx.Set<Producer>().Remove(GetOne(id));
+            ctx.SaveChanges();
         }
 
         public override Producer GetOne(int id)
@@ -35,7 +36,9 @@ namespace KUMF5H_HFT_2021221.Repository
 
         public override void Update(Producer updated)
         {
-            throw new NotImplementedException();
+            var forUpdate = GetOne(updated.Id);
+            forUpdate.Name = updated.Name;
+            ctx.SaveChanges();
         }
     }
 

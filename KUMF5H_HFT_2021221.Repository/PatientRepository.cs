@@ -23,7 +23,7 @@ namespace KUMF5H_HFT_2021221.Repository
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            Delete(GetOne(id));
         }
 
         public override Patient GetOne(int id)
@@ -33,7 +33,10 @@ namespace KUMF5H_HFT_2021221.Repository
 
         public override void Update(Patient updated)
         {
-            throw new NotImplementedException();
+            var forUpdate = GetOne(updated.Id);
+            forUpdate.Illness = updated.Illness;
+            forUpdate.MedicineID = forUpdate.MedicineID;
+            ctx.SaveChanges();
         }
     }
 }

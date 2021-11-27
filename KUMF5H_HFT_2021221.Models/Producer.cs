@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace KUMF5H_HFT_2021221.Models
@@ -24,7 +25,8 @@ namespace KUMF5H_HFT_2021221.Models
 
             // travel proberty
             [NotMapped]
-            public virtual ICollection<Medicine> Medicines { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Medicine> Medicines { get; set; }
 
             public Producer()
             {
