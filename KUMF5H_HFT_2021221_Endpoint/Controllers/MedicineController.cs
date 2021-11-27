@@ -14,7 +14,46 @@ namespace KUMF5H_HFT_2021221_Endpoint.Controllers
     [ApiController]
     public class MedicineController : ControllerBase
     {
+        IMedicineLogic ml;
+        public MedicineController(IMedicineLogic ml)
+        {
+            this.ml = ml;
+        }
 
-       
+        // GET: /Medicine       
+        [HttpGet]
+        public IEnumerable<Medicine> Get()
+        {
+            return ml.GetAll();
+        }
+
+        // GET /Medicine/5
+        [HttpGet("{id}")]
+        public Medicine Get(int id)
+        {
+            return ml.GetOne(id);
+        }
+
+        // POST api/<MedicineController>
+        [HttpPost]
+        public void Post([FromBody] Medicine value)
+        {
+            ml.Create(value);
+        }
+
+        // PUT api/<MedicineController>/5
+        [HttpPut]
+        public void Put([FromBody] Medicine value)
+        {
+            ml.Update(value);
+        }
+
+        // DELETE api/<MedicineController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            ml.Delete(id);
+        }
+
     }
 }
