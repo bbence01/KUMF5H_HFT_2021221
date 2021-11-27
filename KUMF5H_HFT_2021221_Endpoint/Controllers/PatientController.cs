@@ -14,6 +14,46 @@ namespace KUMF5H_HFT_2021221_Endpoint.Controllers
     [ApiController]
     public class PatientController : ControllerBase
     {
-        
+        IPatientLogic pl;
+        public PatientController(IPatientLogic pl)
+        {
+            this.pl = pl;
+        }
+
+
+        // GET: /car
+        [HttpGet]
+        public IEnumerable<Patient> Get()
+        {
+            return pl.GetAll();
+        }
+
+        // GET /car/5
+        [HttpGet("{id}")]
+        public Patient Get(int id)
+        {
+            return pl.GetOne(id);
+        }
+
+        // POST api/<PatientController>
+        [HttpPost]
+        public void Post([FromBody] Patient value)
+        {
+            pl.Create(value);
+        }
+
+        // PUT api/<PatientController>/5
+        [HttpPut]
+        public void Put([FromBody] Patient value)
+        {
+            pl.Update(value);
+        }
+
+        // DELETE api/<PatientController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            pl.Delete(id);
+        }
     }
 }
