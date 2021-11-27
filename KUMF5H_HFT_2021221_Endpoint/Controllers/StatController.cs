@@ -14,29 +14,55 @@ namespace KUMF5H_HFT_2021221_Endpoint.Controllers
     [ApiController]
     public class StatController : ControllerBase
     {
-        IMedicineLogic ml;
+        IMedicineLogic medl;
+        IPatientLogic patl;
+        IProducerLogic prdl;
 
-        public StatController(IMedicineLogic ml)
+
+        public StatController(IMedicineLogic ml, IPatientLogic patl, IProducerLogic prdl)
         {
-            this.ml = ml;
+            this.medl = ml;
+            this.patl = patl;
+            this.prdl = prdl;
         }
 
         [HttpGet]
         public double AveragePrice()
         {
-            return ml.AveragePrice();
+            return medl.AveragePrice();
         }
 
         [HttpGet]
         public IEnumerable<AverageResult> AvarageByProducers()
         {
-            return ml.GetProducerAverages();
+            return medl.GetProducerAverages();
         }
 
         [HttpGet]
         public IEnumerable<HighestResult> HighestMedicineByProducer()
         {
-            return ml.GetProducerMax();
+            return medl.GetProducerMax();
         }
+
+        [HttpGet]
+        public IEnumerable<Threatments> GetThreatment()
+        {
+            return patl.GetThreatment();
+        }
+
+        [HttpGet]
+        public IEnumerable<SameMedicineProducers> GetProducerwithsamemedicine()
+        {
+            return medl.GetProducerwithsamemedicine();
+        }
+
+        [HttpGet]
+        public IEnumerable<SameMedicineProducers> GetCovidcure()
+        {
+            return medl.GetCovidcure();
+        }
+
+
+
     }
 }

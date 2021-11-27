@@ -25,8 +25,8 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void Create(Producer newProducer)
         {
-            if (newProducer.Name ==null||newProducer.Name =="")
-                throw new ArgumentException(nameof(newProducer), "Name is needed");
+            if (newProducer.ProducerName ==null||newProducer.ProducerName =="")
+                throw new ArgumentException(nameof(newProducer), "PatientName is needed");
             producerRepository.Create(newProducer);
 
 
@@ -58,5 +58,25 @@ namespace KUMF5H_HFT_2021221.Logic
         {
             producerRepository.Update(value);
         }
+
+        /*
+        public IEnumerable<HighestResult> GetSameMedicineProducers()
+        {
+
+
+            var q = from producers in producerRepository.GetAll()
+                    group producers by new { producers.PatientName, producers.Medicines } into g
+                    where g.Key.Medicines.Contains
+                    select new HighestResult()
+                    {
+                        ProducerName = g.Key.PatientName,
+                        
+                    };
+            return q;
+
+        
+
+        }*/
+
     }
 }

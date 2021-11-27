@@ -36,8 +36,8 @@ namespace KUMF5H_HFT_2021221.Repository
             var forUpdadte = GetOne(updated.Id);
             forUpdadte.ProducerID = updated.ProducerID;
             forUpdadte.BasePrice = updated.BasePrice;
-            forUpdadte.Name = updated.Name;
-            
+            forUpdadte.MedicineName = updated.MedicineName;
+            forUpdadte.Heals = updated.Heals;
             ctx.SaveChanges();
         }
     }

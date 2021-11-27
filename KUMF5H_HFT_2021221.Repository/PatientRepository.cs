@@ -35,7 +35,8 @@ namespace KUMF5H_HFT_2021221.Repository
         {
             var forUpdate = GetOne(updated.Id);
             forUpdate.Illness = updated.Illness;
-            forUpdate.MedicineID = forUpdate.MedicineID;
+            forUpdate.MedicineID = updated.MedicineID;
+            forUpdate.PatientName = updated.PatientName;
             ctx.SaveChanges();
         }
     }

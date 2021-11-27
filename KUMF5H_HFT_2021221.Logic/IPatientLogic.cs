@@ -18,7 +18,7 @@ namespace KUMF5H_HFT_2021221.Logic
         void Delete(Patient forDelete);
         void Delete(int id);
 
-      //  IEnumerable<AverageResult> GetProducerAverages();
+        IEnumerable<Threatments> GetThreatment();
 
 
     }

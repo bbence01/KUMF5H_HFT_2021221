@@ -18,6 +18,9 @@ namespace KUMF5H_HFT_2021221.Logic
         IEnumerable<AverageResult> GetProducerAverages();
 
         IEnumerable<HighestResult> GetProducerMax();
+        IEnumerable<SameMedicineProducers> GetProducerwithsamemedicine();
+
+        IEnumerable<SameMedicineProducers> GetCovidcure();
 
         double AveragePrice();
 

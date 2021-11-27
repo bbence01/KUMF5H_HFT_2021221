@@ -63,10 +63,10 @@ namespace KUMF5H_HFT_2021221.Logic
            public IList<AverageResult> GetProducerAverages()
            {
                var q = from medicine in medicineRepo.GetAll()
-                       group medicine by new { medicine.ProducerID, medicine.Name } into g
+                       group medicine by new { medicine.ProducerID, medicine.PatientName } into g
                        select new AverageResult()
                        {
-                           ProducerName = g.Key.Name,
+                           ProducerName = g.Key.PatientName,
                            AveragePrice = g.Average(x => x.BasePrice) ?? 0
                        };
                return q.ToList();
@@ -75,10 +75,10 @@ namespace KUMF5H_HFT_2021221.Logic
         public IEnumerable<AverageResult> GetProducerAverages()
         {
             var q = from medicine in medicineRepo.GetAll()
-                    group medicine by new { medicine.ProducerID, medicine.Producer.Name } into g
+                    group medicine by new { medicine.ProducerID, medicine.Producer.ProducerName } into g
                     select new AverageResult()
                     {
-                        ProducerName = g.Key.Name,
+                        ProducerName = g.Key.ProducerName,
                         AveragePrice = g.Average(x => x.BasePrice) ?? 0
                     };
             return q;
@@ -98,10 +98,10 @@ namespace KUMF5H_HFT_2021221.Logic
 
             
             var q = from medicine in medicineRepo.GetAll()
-                    group medicine by new { medicine.ProducerID, medicine.Producer.Name } into g
+                    group medicine by new { medicine.ProducerID, medicine.Producer.ProducerName } into g
                     select new HighestResult()
                     {
-                        ProducerName = g.Key.Name,
+                        ProducerName = g.Key.ProducerName,
                         HighestPrice = g.Max(x => x.BasePrice) ?? 0
                     };
             return q;
@@ -109,9 +109,55 @@ namespace KUMF5H_HFT_2021221.Logic
 
 
         }
+        
+        public IEnumerable<SameMedicineProducers> GetProducerwithsamemedicine()
+        {
+
+
+            var q = from medicine in medicineRepo.GetAll()
+                    group medicine by new {medicine.Heals, medicine.MedicineName, medicine.Producer.ProducerName} into g
+                    select new SameMedicineProducers()
+                    {
+                        Illness = g.Key.Heals,
+                        ProducersName = g.Key.ProducerName,
+                        MedicineName = g.Key.MedicineName
+                        
+                        
+                    };
+            return q;
+
+
+
+        }
+
+        public IEnumerable<SameMedicineProducers> GetCovidcure()
+        {
+
+
+            var q = from medicine in medicineRepo.GetAll()
+                    group medicine by new { medicine.Heals, medicine.MedicineName, medicine.Producer.ProducerName } into g
+                    where g.Key.Heals == "Covid"
+                    select new SameMedicineProducers()
+                    {
+                        Illness = g.Key.Heals,
+                        ProducersName = g.Key.ProducerName,
+                        MedicineName = g.Key.MedicineName
+
+
+                    };
+            return q;
+
+
+
+        }
+
+
+
+
+
     }
 
-  
+
 
 }
 

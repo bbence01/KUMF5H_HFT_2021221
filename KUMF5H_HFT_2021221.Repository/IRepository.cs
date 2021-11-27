@@ -25,7 +25,7 @@ namespace KUMF5H_HFT_2021221.Repository
 
     public interface IMedicineRepository : IRepository<Medicine>
     {
-        //update
+        
         void ChangePrice(int id, int newPrice);
         
     }

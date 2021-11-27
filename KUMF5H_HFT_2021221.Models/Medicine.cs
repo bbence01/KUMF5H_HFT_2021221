@@ -19,7 +19,7 @@ namespace KUMF5H_HFT_2021221.Models
 
         [MaxLength(20)]
         [Required]
-        public string Name { get; set; }
+        public string MedicineName { get; set; }
 
         [Required]
         public int? BasePrice { get; set; }
@@ -28,10 +28,15 @@ namespace KUMF5H_HFT_2021221.Models
         [ForeignKey(nameof(Producer))]
         public int ProducerID { get; set; }
 
+        [Required]
+        public string Heals { get; set; }
+
+
+
 
         // travel proberty
         [NotMapped]
-        [JsonIgnore]
+        
         public virtual ICollection<Patient> Patients { get; set; }
 
         /*

@@ -20,12 +20,16 @@ namespace KUMF5H_HFT_2021221.Models
 
             [MaxLength(20)]
             [Required]
-            public string Name { get; set; }
+            public string ProducerName { get; set; }
+
+        [Required]
+        [MaxLength(20)]
+        public string Location { get; set; }
 
 
-            // travel proberty
-            [NotMapped]
-        [JsonIgnore]
+        // travel proberty
+        [NotMapped]
+        
         public virtual ICollection<Medicine> Medicines { get; set; }
 
             public Producer()

@@ -37,7 +37,8 @@ namespace KUMF5H_HFT_2021221.Repository
         public override void Update(Producer updated)
         {
             var forUpdate = GetOne(updated.Id);
-            forUpdate.Name = updated.Name;
+            forUpdate.ProducerName = updated.ProducerName;
+            forUpdate.Location = updated.Location;
             ctx.SaveChanges();
         }
     }

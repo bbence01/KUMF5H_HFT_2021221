@@ -19,11 +19,19 @@ namespace KUMF5H_HFT_2021221.Models
 
         [Required]
         [MaxLength(20)]
+        public string PatientName { get; set; }
+
+
+        [Required]
+        [MaxLength(20)]
         public string Illness { get; set; }
      
 
         [ForeignKey(nameof(Medicine))]
         public int MedicineID { get; set; }
+
+        
+
 
         [NotMapped]
         [JsonIgnore]

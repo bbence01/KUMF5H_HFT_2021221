@@ -55,5 +55,27 @@ namespace KUMF5H_HFT_2021221.Logic
         {
             patientRepository.Update(value);
         }
+
+
+        public IEnumerable<Threatments> GetThreatment()
+        {
+
+
+            var q = from patients in patientRepository.GetAll()
+                    
+                    where  patients.Medicine.Heals == patients.Illness 
+                    select new Threatments()
+                    {
+                        PatientName = patients.PatientName,
+                        Illness = patients.Illness,
+                        MedicineName = patients.Medicine.MedicineName
+                    };
+
+            return q;
+
+
+
+        }
+
     }
 }

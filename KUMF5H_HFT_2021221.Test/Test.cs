@@ -34,10 +34,10 @@ namespace KUMF5H_HFT_2021221.Test
             patientLogic = new PatientLogic(mockPatientRepository.Object);
             producerLogic = new Producerlogic(mockProducerRepository.Object); 
 
-            Medicine xanil = new Medicine() { Name = "Xanil" };
-            Medicine covax = new Medicine() { Name = "Covax" };
+            Medicine xanil = new Medicine() { MedicineName = "Xanil" };
+            Medicine covax = new Medicine() { MedicineName = "Covax" };
 
-            Producer pfizer = new Producer() { Name = "Pfizer", Medicines= new List<Medicine> { xanil,covax } };
+            Producer pfizer = new Producer() { ProducerName = "Pfizer", Medicines= new List<Medicine> { xanil,covax } };
 
            
 
@@ -49,14 +49,14 @@ namespace KUMF5H_HFT_2021221.Test
                    {
                         new Medicine()
                         {
-                            Name= "alpha",
+                            MedicineName= "alpha",
                             Producer=pfizer,
                             BasePrice = 1000,
 
                         },
                         new Medicine()
                         {
-                            Name = "beta",
+                            MedicineName = "beta",
                             Producer = pfizer,
                             BasePrice=2000
                         }
@@ -96,18 +96,18 @@ namespace KUMF5H_HFT_2021221.Test
                 new List<Producer>
                 {
                     new Producer(){
-                     Name = "Pfizer",
+                     ProducerName = "Pfizer",
                         Medicines = new List<Medicine> {
-                        new Medicine() { Name = "Covax" },
-                        new Medicine() { Name = "Xalin" }
+                        new Medicine() { MedicineName = "Covax" },
+                        new Medicine() { MedicineName = "Xalin" }
                         }
 
                 },
                     new Producer(){
-                     Name = "Béres",
+                     ProducerName = "Béres",
                         Medicines = new List<Medicine> {
-                        new Medicine() { Name = "Novirin" },
-                        new Medicine() { Name = "Avil" }
+                        new Medicine() { MedicineName = "Novirin" },
+                        new Medicine() { MedicineName = "Avil" }
                         }
 
                 }
@@ -130,7 +130,7 @@ namespace KUMF5H_HFT_2021221.Test
             Assert.That(
                 () =>
                 {
-                    medLogic.Create(new Medicine() { Name = "yes", ProducerID = producerId });
+                    medLogic.Create(new Medicine() { MedicineName = "yes", ProducerID = producerId });
                 },
                 Throws.Nothing
                 );
@@ -143,7 +143,7 @@ namespace KUMF5H_HFT_2021221.Test
             Assert.That(
                 () =>
                 {
-                    medLogic.Create(new Medicine() { Name = "no", ProducerID = producerId });
+                    medLogic.Create(new Medicine() { MedicineName = "no", ProducerID = producerId });
                 },
                 Throws.Exception
                 );
@@ -157,7 +157,7 @@ namespace KUMF5H_HFT_2021221.Test
             Assert.That(
                 () =>
                 {
-                    patientLogic.Create(new Patient() { Illness = "yes", MedicineID = medicineId , Medicine = new Medicine() { Name = "Covax" }
+                    patientLogic.Create(new Patient() { Illness = "yes", MedicineID = medicineId , Medicine = new Medicine() { MedicineName = "Covax" }
                 });
                 },
                 Throws.Nothing
@@ -171,7 +171,7 @@ namespace KUMF5H_HFT_2021221.Test
             Assert.That(
                 () =>
                 {
-                    patientLogic.Create(new Patient() { Illness = "no", MedicineID = medicineId , Medicine = new Medicine() { Name = "Covax" }
+                    patientLogic.Create(new Patient() { Illness = "no", MedicineID = medicineId , Medicine = new Medicine() { MedicineName = "Covax" }
                 });
                 },
                 Throws.Exception
@@ -184,8 +184,8 @@ namespace KUMF5H_HFT_2021221.Test
         [TestCase("123weJHKSDJH")]
         public void TestCreateValidProducer(string producerName)
         {
-            Medicine xanil = new Medicine() { Name = "Xanil" };
-            Medicine covax = new Medicine() { Name = "Covax" };
+            Medicine xanil = new Medicine() { MedicineName = "Xanil" };
+            Medicine covax = new Medicine() { MedicineName = "Covax" };
 
             
 
@@ -194,7 +194,7 @@ namespace KUMF5H_HFT_2021221.Test
                 {
                     producerLogic.Create(new Producer()
                     {
-                      Name = producerName,
+                      ProducerName = producerName,
                       Medicines= new List<Medicine> { xanil, covax }
 
                     
@@ -212,10 +212,10 @@ namespace KUMF5H_HFT_2021221.Test
                 () =>
                 {
                     producerLogic.Create(new Producer() {  
-                        Name = producername, 
+                        ProducerName = producername, 
                         Medicines = new List<Medicine> {
-                        new Medicine() { Name = "Covax" },
-                        new Medicine() { Name = "Xalin" }
+                        new Medicine() { MedicineName = "Covax" },
+                        new Medicine() { MedicineName = "Xalin" }
 
                 } });
                 },
@@ -229,13 +229,13 @@ namespace KUMF5H_HFT_2021221.Test
         [Test]
         public void TestAverage()
         {
-            Producer pfizer = new Producer() { Name = "Pfizer", Id = 1 };
+            Producer pfizer = new Producer() { ProducerName = "Pfizer", Id = 1 };
             medLogic.Create(
                         new Medicine()
                         {
                             ProducerID = 1,
                             Producer = pfizer,
-                            Name = "Alpha",
+                            MedicineName = "Alpha",
                             BasePrice = 1000
                         }
             );
@@ -244,7 +244,7 @@ namespace KUMF5H_HFT_2021221.Test
                         {
                             ProducerID = 1,
                             Producer = pfizer,
-                            Name = "Beta",
+                            MedicineName = "Beta",
                             BasePrice = 2000
                         }
             );

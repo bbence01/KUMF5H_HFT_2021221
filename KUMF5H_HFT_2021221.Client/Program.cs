@@ -2,6 +2,7 @@
 using ConsoleTools;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace KUMF5H_HFT_2021221.Client
 {
@@ -20,7 +21,7 @@ namespace KUMF5H_HFT_2021221.Client
 
                 foreach (var item in res)
                 {
-                    Console.WriteLine(new { id = item.Id, name = item.Name });
+                    Console.WriteLine(new { id = item.Id, name = item.ProducerName });
                 }
                 Console.ReadLine();
             });
@@ -30,7 +31,7 @@ namespace KUMF5H_HFT_2021221.Client
 
                 foreach (var item in res)
                 {
-                    Console.WriteLine(item.Name);
+                    Console.WriteLine(item.MedicineName);
                 }
                 Console.ReadLine();
             });
@@ -49,13 +50,17 @@ namespace KUMF5H_HFT_2021221.Client
             //ADD
             consoleMenu.Add("Add a Producer", () => {
                 var a = new Producer();
-                Console.WriteLine("Please give the Prudcers a Name:");
+                Console.WriteLine("Please give the Prudcers a PatientName:");
                 string name = Console.ReadLine();
+                Console.WriteLine("Please give the Prudcers a Location:");
+                string loc = Console.ReadLine();
                 restService.Post<Producer>(
                     
             new Producer()
                     {
-                        Name = name
+                        ProducerName = name,
+                        Location = loc
+                        
             },
                     "/producer"
                 );
@@ -63,41 +68,50 @@ namespace KUMF5H_HFT_2021221.Client
 
             consoleMenu.Add("Add a Medicine", () => {
                 var a = new Producer();
-                Console.WriteLine("Please give the Medicine a Name:");
+                Console.WriteLine("Please give the Medicine a PatientName:");
                 string name = Console.ReadLine();
                 Console.WriteLine("Please give the Medicine a Price:");
                 string price = Console.ReadLine();
                 Console.WriteLine("Please give the Medicine a Producer id:");
                 string pID = Console.ReadLine();
+                Console.WriteLine("Please give the Medicine an Illnes it heals: " );
+                string heals = Console.ReadLine();
+
+
                 restService.Post<Medicine>(
 
             new Medicine()
             {
-                Name = name,
+                MedicineName = name,
                 BasePrice = int.Parse(price),
-                ProducerID = int.Parse(pID)
+                ProducerID = int.Parse(pID),
+                Heals = heals
 
             },
                     "/medicine"
-                );
+                ); ;
             });
 
             
             consoleMenu.Add("Add a Patient", () => {
-               /* var a = new Patient();
-                Console.WriteLine("Please give the Patient an Illness:");
+                var a = new Patient();
+                Console.WriteLine("Please give the Patient a PatientName:");
                 string name = Console.ReadLine();
+                Console.WriteLine("Please give the Patient an Illness:");
+                string ill = Console.ReadLine();
                 Console.WriteLine("Please give the Patient a MedicinID:");
                 string pID = Console.ReadLine();
                 restService.Post<Patient>(
 
             new Patient()
             {
-                Illness = name,
-                MedicineID = int.Parse(pID)
+                Illness = ill,
+                MedicineID = int.Parse(pID),
+                PatientName = name
+
             },
                     "/patient"
-                );*/
+                ); ;
             });
             
 
@@ -113,6 +127,13 @@ namespace KUMF5H_HFT_2021221.Client
                 Console.ReadLine();
             });
 
+            consoleMenu.Add("Medicine average price", () => {
+                var res = restService.GetSingle<double>("/stat/averageprice");
+
+                Console.WriteLine($"Avg medicine price={res}");
+                Console.ReadLine();
+            });
+
             consoleMenu.Add("Highest Medicine Price by producers", () => {
                 var res = restService.Get<HighestResult>("/stat/HighestMedicineByProducer");
 
@@ -123,12 +144,37 @@ namespace KUMF5H_HFT_2021221.Client
                 Console.ReadLine();
             });
 
-            consoleMenu.Add("Medicine average price", () => {
-                var res = restService.GetSingle<double>("/stat/averageprice");
+            consoleMenu.Add("Search medication for the patients", () => {
+                var res = restService.Get<Threatments>("/stat/GetThreatment");
 
-                Console.WriteLine($"Avg medicine price={res}");
+                foreach (var item in res)
+                {
+                    Console.WriteLine(item);
+                }
                 Console.ReadLine();
             });
+
+
+            consoleMenu.Add("Search Producers with the same medication healing", () => {
+                var res = restService.Get<SameMedicineProducers>("/stat/GetProducerwithsamemedicine");
+
+                foreach (var item in res)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.ReadLine();
+            });
+
+            consoleMenu.Add("Search for Covid Cure", () => {
+                var res = restService.Get<SameMedicineProducers>("/stat/GetCovidcure");
+
+                foreach (var item in res)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.ReadLine();
+            });
+
 
             consoleMenu.Show();
         }
