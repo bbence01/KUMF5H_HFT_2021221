@@ -14,6 +14,23 @@ namespace KUMF5H_HFT_2021221_Endpoint.Controllers
     [ApiController]
     public class StatController : ControllerBase
     {
-        
+        IMedicineLogic ml;
+
+        public StatController(IMedicineLogic ml)
+        {
+            this.ml = ml;
+        }
+
+        [HttpGet]
+        public double AveragePrice()
+        {
+            return ml.AveragePrice();
+        }
+
+        [HttpGet]
+        public IEnumerable<AverageResult> AverageByBrands()
+        {
+            return ml.GetProducerAverages();
+        }
     }
 }
