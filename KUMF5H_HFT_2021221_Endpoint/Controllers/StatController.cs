@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace KUMF5H_HFT_2021221_Endpoint.Controllers
+namespace KUMF5H_HFT_2021221.Endpoint.Controllers
 {
     [Route("[controller]/[action]")]
     [ApiController]

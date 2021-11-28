@@ -115,7 +115,8 @@ namespace KUMF5H_HFT_2021221.Logic
 
 
             var q = from medicine in medicineRepo.GetAll()
-                    group medicine by new {medicine.Heals, medicine.MedicineName, medicine.Producer.ProducerName} into g
+                    group medicine by new {medicine.Heals, medicine.Producer.ProducerName, medicine.MedicineName} into g
+                    ///where g.Count() > 0
                     select new SameMedicineProducers()
                     {
                         Illness = g.Key.Heals,

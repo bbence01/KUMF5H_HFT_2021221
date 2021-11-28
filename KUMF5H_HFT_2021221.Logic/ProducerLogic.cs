@@ -65,8 +65,8 @@ namespace KUMF5H_HFT_2021221.Logic
 
 
             var q = from producers in producerRepository.GetAll()
-                    group producers by new { producers.PatientName, producers.Medicines } into g
-                    where g.Key.Medicines.Contains
+                    group producers by new { producers.Medicines, producers.ProducerName } into g
+                    where g.Key.Medicines.
                     select new HighestResult()
                     {
                         ProducerName = g.Key.PatientName,

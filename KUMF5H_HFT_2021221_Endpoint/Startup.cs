@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KUMF5H_HFT_2021221_Endpoint
+namespace KUMF5H_HFT_2021221.Endpoint
 {
     public class Startup
     {
