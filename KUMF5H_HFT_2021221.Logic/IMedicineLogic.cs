@@ -22,6 +22,9 @@ namespace KUMF5H_HFT_2021221.Logic
 
         IEnumerable<SameMedicineProducers> GetCovidcure();
 
+        IEnumerable<LocationResults> GetLocations();
+
+
         double AveragePrice();
 
         void Create(Medicine newMed);

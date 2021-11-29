@@ -109,7 +109,7 @@ namespace KUMF5H_HFT_2021221.Logic
 
 
         }
-        
+        /*
         public IEnumerable<SameMedicineProducers> GetProducerwithsamemedicine()
         {
 
@@ -117,6 +117,29 @@ namespace KUMF5H_HFT_2021221.Logic
             var q = from medicine in medicineRepo.GetAll()
                     group medicine by new {medicine.Heals, medicine.Producer.ProducerName, medicine.MedicineName} into g
                     ///where g.Count() > 0
+                    where g.Count() >0
+                    select new SameMedicineProducers()
+                    {
+                        Illness = g.Key.Heals,
+                        ProducersName = g.Key.ProducerName,
+                        MedicineName = g.Key.MedicineName
+                        
+                        
+                    };
+            return q;
+
+
+
+        }*/
+
+         public IEnumerable<SameMedicineProducers> GetProducerwithsamemedicine()
+        {
+
+
+            var q = from medicine in medicineRepo.GetAll()
+                    group medicine by new {medicine.Heals, medicine.Producer.ProducerName, medicine.MedicineName} into g
+                    ///where g.Count() > 0
+                    where g.Count() >0
                     select new SameMedicineProducers()
                     {
                         Illness = g.Key.Heals,
@@ -130,6 +153,7 @@ namespace KUMF5H_HFT_2021221.Logic
 
 
         }
+
 
         public IEnumerable<SameMedicineProducers> GetCovidcure()
         {
@@ -155,18 +179,20 @@ namespace KUMF5H_HFT_2021221.Logic
 
 
 
-        public IEnumerable<SameMedicineProducers> GetHUNgary()
+        public IEnumerable<LocationResults> GetLocations()
         {
 
 
             var q = from medicine in medicineRepo.GetAll()
                     group medicine by new { medicine.Producer.Location, medicine.MedicineName, medicine.Producer.ProducerName } into g
+                    // where g.Key.Location == "Hungary"
                     where g.Key.Location == "Hungary"
-                    select new SameMedicineProducers()
+                    select new LocationResults()
                     {
                         ProducersName = g.Key.ProducerName,
-                        MedicineName = g.Key.MedicineName
-
+                        MedicineName = g.Key.MedicineName,
+                        Location = g.Key.Location
+                        
 
                     };
             return q;
@@ -174,7 +200,6 @@ namespace KUMF5H_HFT_2021221.Logic
 
 
         }
-
 
 
     }

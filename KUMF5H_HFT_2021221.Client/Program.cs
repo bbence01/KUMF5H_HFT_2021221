@@ -41,13 +41,30 @@ namespace KUMF5H_HFT_2021221.Client
 
                 foreach (var item in res)
                 {
-                    Console.WriteLine(item.Illness);
+                    Console.WriteLine(item.Illness, item.PatientName);
                 }
                 Console.ReadLine();
             });
 
+            //GET one 
+            consoleMenu.Add("Get one Producer", () => {
+                Console.WriteLine("Please give an ID:");
+                string id = Console.ReadLine();
+                var res = restService.Get<Producer>($"/producer/5?id={id}");
 
-            //ADD
+                foreach (var item in res)
+                {
+                    Console.WriteLine(new { id = item.Id, name = item.ProducerName });
+                }
+
+
+
+                Console.ReadLine();
+            });
+
+
+
+            //POST ADD
             consoleMenu.Add("Add a Producer", () => {
                 var a = new Producer();
                 Console.WriteLine("Please give the Prudcers a PatientName:");
@@ -113,9 +130,86 @@ namespace KUMF5H_HFT_2021221.Client
                     "/patient"
                 ); ;
             });
-            
 
 
+            //PUT Update
+
+            consoleMenu.Add("Update a Producer", () => {
+                var a = new Producer();
+                Console.WriteLine("Please give an ID:");
+                string id = Console.ReadLine();
+                Console.WriteLine("Please give the Prudcers a Producername:");
+                string name = Console.ReadLine();
+                Console.WriteLine("Please give the Prudcers a Location:");
+                string loc = Console.ReadLine();
+                restService.Put<Producer>(
+
+            new Producer()
+            {
+                Id= int.Parse(id),
+                ProducerName = name,
+                Location = loc
+
+            },
+                    "/producer"
+                );
+            });
+
+            consoleMenu.Add("Update a Medicine", () => {
+                var a = new Producer();
+                Console.WriteLine("Please give an ID:");
+                string id = Console.ReadLine();
+                Console.WriteLine("Please give the Medicine a PatientName:");
+                string name = Console.ReadLine();
+                Console.WriteLine("Please give the Medicine a Price:");
+                string price = Console.ReadLine();
+                Console.WriteLine("Please give the Medicine a Producer id:");
+                string pID = Console.ReadLine();
+                Console.WriteLine("Please give the Medicine an Illnes it heals: ");
+                string heals = Console.ReadLine();
+
+
+                restService.Put<Medicine>(
+
+            new Medicine()
+            {
+                Id = int.Parse(id),
+                MedicineName = name,
+                BasePrice = int.Parse(price),
+                ProducerID = int.Parse(pID),
+                Heals = heals
+
+            },
+                    "/medicine"
+                ); ;
+            });
+
+            consoleMenu.Add("Add a Patient", () => {
+                var a = new Patient();
+                Console.WriteLine("Please give an ID:");
+                string id = Console.ReadLine();
+                Console.WriteLine("Please give the Patient a PatientName:");
+                string name = Console.ReadLine();
+                Console.WriteLine("Please give the Patient an Illness:");
+                string ill = Console.ReadLine();
+                Console.WriteLine("Please give the Patient a MedicinID:");
+                string pID = Console.ReadLine();
+                restService.Put<Patient>(
+
+            new Patient()
+            {
+                Id = int.Parse(id),
+                Illness = ill,
+                MedicineID = int.Parse(pID),
+                PatientName = name
+
+            },
+                    "/patient"
+                ); ;
+            });
+
+
+            //LINQ
 
             consoleMenu.Add("Average Medicine Price by producers", () => {
                 var res = restService.Get<AverageResult>("/stat/AvarageByProducers");
@@ -175,6 +269,15 @@ namespace KUMF5H_HFT_2021221.Client
                 Console.ReadLine();
             });
 
+            consoleMenu.Add("Search for Medicines produced in Hungary", () => {
+                var res = restService.Get<LocationResults>("/stat/GetLocations");
+
+                foreach (var item in res)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.ReadLine();
+            });
 
             consoleMenu.Show();
         }

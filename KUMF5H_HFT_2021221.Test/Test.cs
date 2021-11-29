@@ -32,14 +32,14 @@ namespace KUMF5H_HFT_2021221.Test
         {
             medLogic = new MedicineLogic(mockMedicineRepository.Object);
             patientLogic = new PatientLogic(mockPatientRepository.Object);
-            producerLogic = new Producerlogic(mockProducerRepository.Object); 
+            producerLogic = new Producerlogic(mockProducerRepository.Object);
 
-            Medicine xanil = new Medicine() { MedicineName = "Xanil",Heals="Nátha" };
-            Medicine covax = new Medicine() { MedicineName = "Covax" , Heals= "Covid"};
+            Medicine xanil = new Medicine() { MedicineName = "Xanil", Heals = "Nátha" };
+            Medicine covax = new Medicine() { MedicineName = "Covax", Heals = "Covid" };
 
-            Producer pfizer = new Producer() { ProducerName = "Pfizer", Medicines= new List<Medicine> { xanil,covax } };
+            Producer pfizer = new Producer() { ProducerName = "Pfizer", Medicines = new List<Medicine> { xanil, covax }, Location = "Hungary" };
 
-           
+         
 
 
             mockMedicineRepository.Setup(medRepo => medRepo.Create(It.IsAny<Medicine>()));
@@ -66,7 +66,7 @@ namespace KUMF5H_HFT_2021221.Test
                 );
 
 
-            
+
             mockPatientRepository.Setup(patientRepo => patientRepo.Create(It.IsAny<Patient>()));
             mockPatientRepository.Setup(patientRepo => patientRepo.GetAll()).Returns(
                 new List<Patient>
@@ -122,7 +122,7 @@ namespace KUMF5H_HFT_2021221.Test
 
         }
 
-        
+
 
         [TestCase(1)]
         [TestCase(10)]
@@ -159,8 +159,12 @@ namespace KUMF5H_HFT_2021221.Test
             Assert.That(
                 () =>
                 {
-                    patientLogic.Create(new Patient() { Illness = "yes", MedicineID = medicineId , Medicine = new Medicine() { MedicineName = "Covax", Heals = "Covid" }
-                });
+                    patientLogic.Create(new Patient()
+                    {
+                        Illness = "yes",
+                        MedicineID = medicineId,
+                        Medicine = new Medicine() { MedicineName = "Covax", Heals = "Covid" }
+                    });
                 },
                 Throws.Nothing
                 );
@@ -173,8 +177,12 @@ namespace KUMF5H_HFT_2021221.Test
             Assert.That(
                 () =>
                 {
-                    patientLogic.Create(new Patient() { Illness = "no", MedicineID = medicineId , Medicine = new Medicine() { MedicineName = "Covax", Heals = "Covid" }
-                });
+                    patientLogic.Create(new Patient()
+                    {
+                        Illness = "no",
+                        MedicineID = medicineId,
+                        Medicine = new Medicine() { MedicineName = "Covax", Heals = "Covid" }
+                    });
                 },
                 Throws.Exception
                 );
@@ -186,20 +194,20 @@ namespace KUMF5H_HFT_2021221.Test
         [TestCase("123weJHKSDJH")]
         public void TestCreateValidProducer(string producerName)
         {
-            Medicine xanil = new Medicine() { MedicineName = "Xanil" , Heals = "Nátha" };
+            Medicine xanil = new Medicine() { MedicineName = "Xanil", Heals = "Nátha" };
             Medicine covax = new Medicine() { MedicineName = "Covax", Heals = "Covid" };
 
-            
+
 
             Assert.That(
                 () =>
                 {
                     producerLogic.Create(new Producer()
                     {
-                      ProducerName = producerName,
-                      Medicines= new List<Medicine> { xanil, covax }
+                        ProducerName = producerName,
+                        Medicines = new List<Medicine> { xanil, covax }
 
-                    
+
                     });
                 },
                 Throws.Nothing
@@ -207,19 +215,21 @@ namespace KUMF5H_HFT_2021221.Test
         }
 
         [TestCase("")]
-        
+
         public void TestCreateInValidProducer(string producername)
         {
             Assert.That(
                 () =>
                 {
-                    producerLogic.Create(new Producer() {  
-                        ProducerName = producername, 
+                    producerLogic.Create(new Producer()
+                    {
+                        ProducerName = producername,
                         Medicines = new List<Medicine> {
                         new Medicine() { MedicineName = "Covax",Heals = "Covid" },
                         new Medicine() { MedicineName = "Xalin" ,Heals = "Nátha"}
 
-                } });
+                }
+                    });
                 },
                 Throws.Exception
                 );
@@ -230,8 +240,8 @@ namespace KUMF5H_HFT_2021221.Test
 
         [Test]
         public void TestAverage()
-        {
-            Producer pfizer = new Producer() { ProducerName = "Pfizer", Id = 1 };
+        {/*
+            Producer pfizer = new Producer() { ProducerName = "Pfizer", Id = 1, Location = "Hungary" };
             medLogic.Create(
                         new Medicine()
                         {
@@ -249,7 +259,7 @@ namespace KUMF5H_HFT_2021221.Test
                             MedicineName = "Beta",
                             BasePrice = 2000
                         }
-            );
+            );*/
             var res = medLogic.GetProducerAverages();
             Assert.That(res, Is.EquivalentTo(
                 new List<AverageResult>
@@ -268,8 +278,8 @@ namespace KUMF5H_HFT_2021221.Test
 
         [Test]
         public void TestMax()
-        {
-            Producer pfizer = new Producer() { ProducerName = "Pfizer", Id = 1 };
+        {/*
+            Producer pfizer = new Producer() { ProducerName = "Pfizer", Id = 1, Location = "Hungary" };
             medLogic.Create(
                         new Medicine()
                         {
@@ -287,7 +297,7 @@ namespace KUMF5H_HFT_2021221.Test
                             MedicineName = "Beta",
                             BasePrice = 2000
                         }
-            );
+            );*/
             var res = medLogic.GetProducerMax();
             Assert.That(res, Is.EquivalentTo(
                 new List<HighestResult>
@@ -307,8 +317,8 @@ namespace KUMF5H_HFT_2021221.Test
 
         [Test]
         public void TestCovid()
-        {
-            Producer pfizer = new Producer() { ProducerName = "Pfizer", Id = 1 };
+        {/*
+            Producer pfizer = new Producer() { ProducerName = "Pfizer", Id = 1, Location = "Hungary" };
             medLogic.Create(
                         new Medicine()
                         {
@@ -316,7 +326,7 @@ namespace KUMF5H_HFT_2021221.Test
                             Producer = pfizer,
                             MedicineName = "Alpha",
                             BasePrice = 1000,
-                            Heals ="Covid"
+                            Heals = "Covid"
                         }
             );
             medLogic.Create(
@@ -328,7 +338,7 @@ namespace KUMF5H_HFT_2021221.Test
                             BasePrice = 2000,
                             Heals = "Nátha"
                         }
-            );
+            );*/
             var res = medLogic.GetCovidcure();
             Assert.That(res, Is.EquivalentTo(
                 new List<SameMedicineProducers>
@@ -346,9 +356,117 @@ namespace KUMF5H_HFT_2021221.Test
 
         }
 
+        [Test]
+        public void TestPatientMed()
+        {/*
+            Producer pfizer = new Producer() { ProducerName = "Pfizer", Id = 1, Location = "Hungary" };
+            medLogic.Create(
+                        new Medicine()
+                        {
+                            Id=1,
+                            ProducerID = 1,
+                            Producer = pfizer,
+                            MedicineName = "Alpha",
+                            BasePrice = 1000,
+                            Heals = "Covid"
+                        }
+            );
+            medLogic.Create(
+                        new Medicine()
+                        {
+                            Id = 2,
+                            ProducerID = 1,
+                            Producer = pfizer,                            
+                            MedicineName = "Beta",
+                            BasePrice = 2000,
+                            Heals = "Nátha"
+                        }
+            );
+
+            patientLogic.Create(
+
+                new Patient()
+                {
+                    
+                    MedicineID=1,
+                    PatientName = "Bence",
+                    Illness= "Nátha"
+                }
+
+                );
+
+            */
+            var res = patientLogic.GetThreatment();
+            Assert.That(res, Is.EquivalentTo(
+                new List<Threatments>
+                {
+                      new Threatments()
+                {
+                    
+                    PatientName = "Dani",
+                    Illness= "Covid",
+                    MedicineName= "Covax"
+                }
+
+                }
+                ));
 
 
+
+
+        }
+
+
+
+        [Test]
+        public void TestHungary()
+        {/*
+            Producer pfizer = new Producer() { ProducerName = "Pfizer", Id = 1, Location = "Hungary" };
+            medLogic.Create(
+                        new Medicine()
+                        {
+                            ProducerID = 1,
+                            Producer = pfizer,
+                            MedicineName = "Alpha",
+                            BasePrice = 1000,
+                            Heals = "Covid"
+                        }
+            );
+            medLogic.Create(
+                        new Medicine()
+                        {
+                            ProducerID = 1,
+                            Producer = pfizer,
+                            MedicineName = "Beta",
+                            BasePrice = 2000,
+                            Heals = "Nátha"
+                        }
+            );*/
+            var res = medLogic.GetLocations();
+            Assert.That(res, Is.EquivalentTo(
+                new List<LocationResults>
+                {
+                    new LocationResults()
+                    {
+                        ProducersName="Pfizer",
+                        Location = "Hungary",
+                        MedicineName = "Alpha"
+                    },
+                    new LocationResults()
+                    {
+                        ProducersName="Pfizer",
+                        Location = "Hungary",
+                        MedicineName = "Beta"
+                    }
+                }
+                ));
+
+
+
+
+        }
     }
+
 }
 
 

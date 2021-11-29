@@ -63,6 +63,12 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
         }
 
 
+        [HttpGet]
+        public IEnumerable<LocationResults> GetLocations()
+        {
+            return medl.GetLocations();
+        }
+
 
     }
 }
