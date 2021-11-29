@@ -30,7 +30,7 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
 
         // GET api/<ProducerController>/5
         [HttpGet("{id}")]
-        public Producer Get(int id)
+        public IEnumerable<Producer> Get(int id)
         {
             return pl.GetOne(id);
         }

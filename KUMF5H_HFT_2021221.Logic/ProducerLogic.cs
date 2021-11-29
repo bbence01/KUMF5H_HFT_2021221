@@ -48,10 +48,17 @@ namespace KUMF5H_HFT_2021221.Logic
         {
             return producerRepository.GetAll().ToList();
         }
-
+        /*
         public Producer GetOne(int id)
         {
             return producerRepository.GetOne(id);
+        }
+        */
+        public IEnumerable<Producer> GetOne(int id)
+        {
+            List < Producer > pr = new List<Producer>();
+            pr.Add(producerRepository.GetOne(id));
+            return pr;
         }
 
         public void Update(Producer value)

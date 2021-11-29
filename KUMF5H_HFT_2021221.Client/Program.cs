@@ -50,8 +50,8 @@ namespace KUMF5H_HFT_2021221.Client
             consoleMenu.Add("Get one Producer", () => {
                 Console.WriteLine("Please give an ID:");
                 string id = Console.ReadLine();
-                var res = restService.Get<Producer>($"/producer/5?id={id}");
-
+               var res = restService.Get<Producer>($"/producer/{id}");
+               
                 foreach (var item in res)
                 {
                     Console.WriteLine(new { id = item.Id, name = item.ProducerName });
@@ -184,7 +184,7 @@ namespace KUMF5H_HFT_2021221.Client
                 ); ;
             });
 
-            consoleMenu.Add("Add a Patient", () => {
+            consoleMenu.Add("Update a Patient", () => {
                 var a = new Patient();
                 Console.WriteLine("Please give an ID:");
                 string id = Console.ReadLine();
@@ -208,6 +208,21 @@ namespace KUMF5H_HFT_2021221.Client
                 ); ;
             });
 
+            //Delete
+                        
+            consoleMenu.Add("Delete one Producer", () => {
+                Console.WriteLine("Please give an ID:");
+                int id = int.Parse(Console.ReadLine());
+               /*restService.Delete<Producer>(id,
+
+                   "/producer");*/
+                
+
+               restService.Delete(id,$"/producer");
+
+
+                Console.ReadLine();
+            });
 
             //LINQ
 

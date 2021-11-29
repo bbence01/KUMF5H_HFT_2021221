@@ -11,7 +11,7 @@ namespace KUMF5H_HFT_2021221.Logic
     public interface IProducerLogic
     {
         IEnumerable<Producer> GetAll();
-        Producer GetOne(int id);
+        IEnumerable<Producer> GetOne(int id);
         void ChangeProducerName(int id, string newProducerName);
 
         void Create(Producer newProducer);

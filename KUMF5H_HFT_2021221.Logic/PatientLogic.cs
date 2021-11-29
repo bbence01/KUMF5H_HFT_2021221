@@ -24,7 +24,7 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void Create(Patient newPatient)
         {
-            patientRepository.Create(newPatient);
+          //  patientRepository.Create(newPatient);
 
             if (newPatient.MedicineID < 1)
                 throw new ArgumentException(nameof(newPatient), "Medicine id must be positive");

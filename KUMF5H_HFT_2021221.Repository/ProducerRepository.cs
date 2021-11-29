@@ -29,10 +29,12 @@ namespace KUMF5H_HFT_2021221.Repository
             ctx.SaveChanges();
         }
 
+        
         public override Producer GetOne(int id)
         {
             return GetAll().SingleOrDefault(producer => producer.Id == id);
         }
+
 
         public override void Update(Producer updated)
         {
