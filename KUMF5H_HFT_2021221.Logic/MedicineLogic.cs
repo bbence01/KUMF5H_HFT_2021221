@@ -155,6 +155,27 @@ namespace KUMF5H_HFT_2021221.Logic
 
 
 
+        public IEnumerable<SameMedicineProducers> GetHUNgary()
+        {
+
+
+            var q = from medicine in medicineRepo.GetAll()
+                    group medicine by new { medicine.Producer.Location, medicine.MedicineName, medicine.Producer.ProducerName } into g
+                    where g.Key.Location == "Hungary"
+                    select new SameMedicineProducers()
+                    {
+                        ProducersName = g.Key.ProducerName,
+                        MedicineName = g.Key.MedicineName
+
+
+                    };
+            return q;
+
+
+
+        }
+
+
 
     }
 

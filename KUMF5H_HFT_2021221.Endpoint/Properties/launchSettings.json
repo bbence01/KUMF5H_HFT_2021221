@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "KUMF5H_HFT_2021221_Endpoint": {
+    "KUMF5H_HFT_2021221.Endpoint": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
