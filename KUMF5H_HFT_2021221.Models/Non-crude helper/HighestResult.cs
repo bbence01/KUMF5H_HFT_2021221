@@ -33,7 +33,7 @@ namespace KUMF5H_HFT_2021221.Models
 
         public override string ToString()
         {
-            return $"MedicineName={ProducerName}, Highest Price={HighestPrice}";
+            return $"Medicine Name={ProducerName}, Highest Price={HighestPrice}";
         }
     }
 }

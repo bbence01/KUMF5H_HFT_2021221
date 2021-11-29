@@ -30,7 +30,7 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
 
         // GET /patient/5
         [HttpGet("{id}")]
-        public Patient Get(int id)
+        public IEnumerable<Patient> Get(int id)
         {
             return pl.GetOne(id);
         }

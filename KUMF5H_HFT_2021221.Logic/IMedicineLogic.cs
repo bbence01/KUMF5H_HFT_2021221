@@ -10,7 +10,7 @@ namespace KUMF5H_HFT_2021221.Logic
 {
     public interface IMedicineLogic 
     {
-        Medicine GetOne(int id);
+        IEnumerable<Medicine> GetOne(int id);
         IEnumerable<Medicine> GetAll();
         void ChangePrice(int id, int newPrice);
       

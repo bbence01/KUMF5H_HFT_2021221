@@ -11,7 +11,8 @@ namespace KUMF5H_HFT_2021221.Logic
     public interface IPatientLogic
     {
         IEnumerable<Patient> GetAll();
-        Patient GetOne(int id);
+        //  Patient GetOne(int id);
+        IEnumerable<Patient> GetOne(int id);
         void ChangePatientName(int id, string newPatientName);
         void Create(Patient newPatient);
         void Update(Patient updated);

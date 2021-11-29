@@ -29,7 +29,7 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
 
         // GET /medicine/5
         [HttpGet("{id}")]
-        public Medicine Get(int id)
+        public IEnumerable<Medicine> Get(int id)
         {
             return ml.GetOne(id);
         }

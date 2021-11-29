@@ -21,7 +21,7 @@ namespace KUMF5H_HFT_2021221.Client
 
                 foreach (var item in res)
                 {
-                    Console.WriteLine(new { id = item.Id, name = item.ProducerName });
+                    Console.WriteLine(new { id = item.Id, name = item.ProducerName, item.Location });
                 }
                 Console.ReadLine();
             });
@@ -31,7 +31,7 @@ namespace KUMF5H_HFT_2021221.Client
 
                 foreach (var item in res)
                 {
-                    Console.WriteLine(item.MedicineName);
+                    Console.WriteLine(new { id = item.Id, name = item.MedicineName, item.Heals });
                 }
                 Console.ReadLine();
             });
@@ -41,7 +41,7 @@ namespace KUMF5H_HFT_2021221.Client
 
                 foreach (var item in res)
                 {
-                    Console.WriteLine(item.Illness, item.PatientName);
+                    Console.WriteLine(new { id = item.Id, name = item.PatientName, item.Illness });
                 }
                 Console.ReadLine();
             });
@@ -55,6 +55,37 @@ namespace KUMF5H_HFT_2021221.Client
                 foreach (var item in res)
                 {
                     Console.WriteLine(new { id = item.Id, name = item.ProducerName });
+                }
+
+
+
+                Console.ReadLine();
+            });
+
+            
+            consoleMenu.Add("Get one medicine", () => {
+                Console.WriteLine("Please give an ID:");
+                string id = Console.ReadLine();
+                var res = restService.Get<Medicine>($"/medicine/{id}");
+
+                foreach (var item in res)
+                {
+                    Console.WriteLine(new { id = item.Id, name = item.MedicineName, item.Heals });
+                }
+
+
+
+                Console.ReadLine();
+            });
+
+            consoleMenu.Add("Get one Patient", () => {
+                Console.WriteLine("Please give an ID:");
+                string id = Console.ReadLine();
+                var res = restService.Get<Patient>($"/patient/{id}");
+
+                foreach (var item in res)
+                {
+                    Console.WriteLine(new { id = item.Id, name = item.PatientName, item.Illness });
                 }
 
 
@@ -213,12 +244,34 @@ namespace KUMF5H_HFT_2021221.Client
             consoleMenu.Add("Delete one Producer", () => {
                 Console.WriteLine("Please give an ID:");
                 int id = int.Parse(Console.ReadLine());
-               /*restService.Delete<Producer>(id,
-
-                   "/producer");*/
+               /*restService.Delete<Producer>(id,"/producer");*/
                 
 
                restService.Delete(id,$"/producer");
+
+
+                Console.ReadLine();
+            });
+
+            consoleMenu.Add("Delete one Medicine", () => {
+                Console.WriteLine("Please give an ID:");
+                int id = int.Parse(Console.ReadLine());
+                
+
+
+                restService.Delete(id, $"/medicine");
+
+
+                Console.ReadLine();
+            });
+
+            consoleMenu.Add("Delete one Patient", () => {
+                Console.WriteLine("Please give an ID:");
+                int id = int.Parse(Console.ReadLine());
+                
+
+
+                restService.Delete(id, $"/patient");
 
 
                 Console.ReadLine();

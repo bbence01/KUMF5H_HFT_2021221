@@ -31,7 +31,7 @@ namespace KUMF5H_HFT_2021221.Models
 
         public override string ToString()
         {
-            return $"MedicineName={ProducerName}, AveragePrice={AveragePrice}";
+            return $"Medicine Name={ProducerName}, Average Price={AveragePrice}";
         }
     }
 }

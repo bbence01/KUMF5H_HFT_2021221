@@ -49,10 +49,12 @@ namespace KUMF5H_HFT_2021221.Logic
             }
 
        
-        public Medicine GetOne(int id)
+        public IEnumerable<Medicine> GetOne(int id)
             {
-                return medicineRepo.GetOne(id);
-            }
+            List<Medicine> mr = new List<Medicine>();
+            mr.Add(medicineRepo.GetOne(id));
+            return mr;
+        }
 
         public void Update(Medicine updated)
         {

@@ -46,15 +46,25 @@ namespace KUMF5H_HFT_2021221.Logic
             return patientRepository.GetAll().ToList();
         }
 
+        /*
         public Patient GetOne(int id)
         {
             return patientRepository.GetOne(id);
+        }*/
+
+        public IEnumerable<Patient> GetOne(int id)
+        {
+            List<Patient> pr = new List<Patient>();
+            pr.Add(patientRepository.GetOne(id));
+            return pr;
         }
 
         public void Update(Patient value)
         {
             patientRepository.Update(value);
         }
+
+       
 
         /*
         public IEnumerable<Threatments> GetThreatment()

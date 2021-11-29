@@ -32,7 +32,7 @@ namespace KUMF5H_HFT_2021221.Models
 
         public override string ToString()
         {
-            return $"Patient PatientName={PatientName}, Illness={Illness} ,MedicineName={MedicineName} ";
+            return $"Patient Name={PatientName}, Illness={Illness} ,Medicine Name={MedicineName} ";
         }
     }
 }
