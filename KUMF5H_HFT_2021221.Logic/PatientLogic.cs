@@ -19,6 +19,7 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void ChangePatientName(int id, string newPatientName)
         {
+
             patientRepository.ChangePatientName(id, newPatientName);
         }
 
@@ -33,6 +34,7 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void Delete(int id)
         {
+           
             patientRepository.Delete(id);
         }
 
@@ -54,6 +56,9 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public IEnumerable<Patient> GetOne(int id)
         {
+            if (id == null || id <1)
+                throw new ArgumentException(nameof(id), "ID must be positive");
+
             List<Patient> pr = new List<Patient>();
             pr.Add(patientRepository.GetOne(id));
             return pr;

@@ -40,7 +40,9 @@ namespace KUMF5H_HFT_2021221.Logic
 
             public void ChangePrice(int id, int newPrice)
             {
-                medicineRepo.ChangePrice(id, newPrice);
+            if (id == null || id <1)
+                throw new ArgumentException(nameof(id), "ID must be positive");
+            medicineRepo.ChangePrice(id, newPrice);
             }
 
             public IEnumerable<Medicine> GetAll()
@@ -51,6 +53,10 @@ namespace KUMF5H_HFT_2021221.Logic
        
         public IEnumerable<Medicine> GetOne(int id)
             {
+
+            if (id == null || id <1)
+                throw new ArgumentException(nameof(id), "ID must be positive");
+
             List<Medicine> mr = new List<Medicine>();
             mr.Add(medicineRepo.GetOne(id));
             return mr;

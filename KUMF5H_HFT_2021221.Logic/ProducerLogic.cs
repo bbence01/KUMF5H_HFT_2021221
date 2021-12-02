@@ -26,7 +26,7 @@ namespace KUMF5H_HFT_2021221.Logic
         public void Create(Producer newProducer)
         {
             if (newProducer.ProducerName ==null||newProducer.ProducerName =="")
-                throw new ArgumentException(nameof(newProducer), "PatientName is needed");
+                throw new ArgumentException(nameof(newProducer), "Producer Name is needed");
             producerRepository.Create(newProducer);
 
 
@@ -41,6 +41,9 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void Delete(int id)
         {
+            
+          
+
             producerRepository.Delete(id);
         }
 
@@ -56,6 +59,9 @@ namespace KUMF5H_HFT_2021221.Logic
         */
         public IEnumerable<Producer> GetOne(int id)
         {
+            if (id == null || id <= 0)
+                throw new ArgumentException(nameof(id), "ID must be positive");
+
             List < Producer > pr = new List<Producer>();
             pr.Add(producerRepository.GetOne(id));
             return pr;
@@ -63,6 +69,9 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void Update(Producer value)
         {
+            if (value.ProducerName == null || value.ProducerName == "")
+                throw new ArgumentException(nameof(value), "Producer Name is needed");
+
             producerRepository.Update(value);
         }
 

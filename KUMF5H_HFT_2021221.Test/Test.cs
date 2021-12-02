@@ -34,10 +34,10 @@ namespace KUMF5H_HFT_2021221.Test
             patientLogic = new PatientLogic(mockPatientRepository.Object);
             producerLogic = new Producerlogic(mockProducerRepository.Object);
 
-            Medicine xanil = new Medicine() { MedicineName = "Xanil", Heals = "Nátha" };
-            Medicine covax = new Medicine() { MedicineName = "Covax", Heals = "Covid" };
+            Medicine xanil = new Medicine() { Id = 1, MedicineName = "Xanil", Heals = "Nátha", BasePrice=2000,ProducerID=1 };
+            Medicine covax = new Medicine() { Id = 2, MedicineName = "Covax", Heals = "Covid" , BasePrice = 5000, ProducerID = 1  };
 
-            Producer pfizer = new Producer() { ProducerName = "Pfizer", Medicines = new List<Medicine> { xanil, covax }, Location = "Hungary" };
+            Producer pfizer = new Producer() { Id = 1, ProducerName = "Pfizer", Medicines = new List<Medicine> { xanil, covax }, Location = "Hungary" };
 
          
 
@@ -49,18 +49,22 @@ namespace KUMF5H_HFT_2021221.Test
                    {
                         new Medicine()
                         {
+                            Id=1,
                             MedicineName= "Alpha",
                             Producer=pfizer,
                             BasePrice = 1000,
-                            Heals ="Covid"
+                            Heals ="Covid",
+                            ProducerID=1
 
                         },
                         new Medicine()
                         {
+                            Id=2,
                             MedicineName = "Beta",
                             Producer = pfizer,
                             BasePrice=2000,
-                            Heals = "Nátha"
+                            Heals = "Nátha",
+                             ProducerID=1
                         }
                    }.AsQueryable()
                 );
@@ -73,17 +77,20 @@ namespace KUMF5H_HFT_2021221.Test
                 {
                     new Patient()
                     {
+                        Id=1,
                         Illness= "Headache",
                         Medicine = xanil,
-                        PatientName = "Bence"
-
+                        PatientName = "Bence",
+                        MedicineID = 1
 
                      },
                     new Patient()
                     {
+                        Id=2,
                         Illness= "Covid",
                         Medicine = covax,
-                        PatientName = "Dani"
+                        PatientName = "Dani",
+                        MedicineID =2
 
 
                     }
@@ -98,18 +105,22 @@ namespace KUMF5H_HFT_2021221.Test
                 new List<Producer>
                 {
                     new Producer(){
+                        Id=1,
+                        Location= "Hungary",
                      ProducerName = "Pfizer",
                         Medicines = new List<Medicine> {
-                        new Medicine() { MedicineName = "Covax" ,Heals="Covid"},
-                        new Medicine() { MedicineName = "Xalin",Heals="Nátha" }
+                        new Medicine() { Id=1,MedicineName = "Covax" ,Heals="Covid",ProducerID=1, BasePrice=2000},
+                        new Medicine() { Id=2,MedicineName = "Xalin",Heals="Nátha" ,ProducerID=1,BasePrice=1000}
                         }
 
                 },
                     new Producer(){
+                        Id=2,
                      ProducerName = "Béres",
+                     Location = "USA",
                         Medicines = new List<Medicine> {
-                        new Medicine() { MedicineName = "Novirin",Heals="Nátha" },
-                        new Medicine() { MedicineName = "Avil",Heals="Nátha" }
+                        new Medicine() { Id=3,MedicineName = "Novirin",Heals="Nátha",ProducerID=2, BasePrice=3000 },
+                        new Medicine() {Id=4, MedicineName = "Avil",Heals="Nátha" ,ProducerID=2, BasePrice=2500}
                         }
 
                 }
@@ -137,7 +148,7 @@ namespace KUMF5H_HFT_2021221.Test
                 Throws.Nothing
                 );
         }
-        [TestCase(-1)]
+        [TestCase(0)]
         [TestCase(-10)]
         [TestCase(-100)]
         public void TestCreateInValidMedicine(int producerId)
@@ -169,7 +180,7 @@ namespace KUMF5H_HFT_2021221.Test
                 Throws.Nothing
                 );
         }
-        [TestCase(-1)]
+        [TestCase(0)]
         [TestCase(-10)]
         [TestCase(-100)]
         public void TestCreateInValidPatient(int medicineId)
@@ -234,7 +245,216 @@ namespace KUMF5H_HFT_2021221.Test
                 Throws.Exception
                 );
         }
+        /*
+        [Test]
+        public void TestGetAllprodducers()
+        {/*
+            Medicine xanil = new Medicine() { MedicineName = "Xanil", Heals = "Nátha" };
+            Medicine covax = new Medicine() { MedicineName = "Covax", Heals = "Covid" };
+            
 
+
+            var res = producerLogic.GetAll();
+            Assert.That(res, Is.EquivalentTo(
+                
+                new List<Producer>
+                {
+
+                new Producer(){
+                     ProducerName = "Pfizer",
+                        Medicines = new List<Medicine> {
+                        new Medicine() { MedicineName = "Covax" ,Heals="Covid"},
+                        new Medicine() { MedicineName = "Xalin",Heals="Nátha" }
+                        }
+
+                },
+                 new Producer(){
+                     ProducerName = "Béres",
+                       Medicines = new List<Medicine> {
+                        new Medicine() { MedicineName = "Novirin",Heals="Nátha" },
+                        new Medicine() { MedicineName = "Avil",Heals="Nátha" }
+                        }
+
+                }
+
+
+                }
+                ));
+        }*/
+
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void TestInvalidGetOneProdducers(int id)
+        {
+           
+
+            Assert.That(
+              () =>
+              {
+                  producerLogic.GetOne(id);   
+              },
+                  
+              
+              Throws.Exception
+              );
+        }
+
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void TestInvalidGetOneMedicine(int id)
+        {
+
+            Assert.That(
+              () =>
+              {
+                  medLogic.GetOne(id);
+              },
+
+
+              Throws.Exception
+              );
+        }
+
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void TestInvalidGetOnePatient(int id)
+        {
+
+            Assert.That(
+              () =>
+              {
+                  patientLogic.GetOne(id);
+              },
+
+
+              Throws.Exception
+              );
+        }
+
+        /*
+        [TestCase(1)]
+        public void TestGetOneProdducers(int id)
+        {
+        
+        var res = producerLogic.GetOne(id);
+        CollectionAssert.AreEqual(res, 
+
+            new List<Producer>
+            {
+
+            new Producer(){
+                 ProducerName = "Pfizer",
+                    Medicines = new List<Medicine> {
+                    new Medicine() { MedicineName = "Covax" ,Heals="Covid"},
+                    new Medicine() { MedicineName = "Xalin",Heals="Nátha" }
+                    }
+
+            }
+
+
+
+            }
+            );     
+
+
+     }*/
+        /*
+        [Test]
+        public void TestGetallProdducers()
+        {
+           
+
+            var res = producerLogic.GetAll();
+            CollectionAssert.AreEqual(res, 
+                           
+                new List<Producer>
+                {
+                    new Producer(){
+                        Id=1,
+                     ProducerName = "Pfizer",
+                        Medicines = new List<Medicine> {
+                        new Medicine() { Id=1,MedicineName = "Covax" ,Heals="Covid",ProducerID=1, BasePrice=2000},
+                        new Medicine() { Id=2,MedicineName = "Xalin",Heals="Nátha" ,ProducerID=1,BasePrice=1000}
+                        }
+
+                },
+                    new Producer(){
+                        Id=2,
+                     ProducerName = "Béres",
+                        Medicines = new List<Medicine> {
+                        new Medicine() { Id=3,MedicineName = "Novirin",Heals="Nátha",ProducerID=2, BasePrice=3000 },
+                        new Medicine() {Id=4, MedicineName = "Avil",Heals="Nátha" ,ProducerID=2, BasePrice=2500}
+                        }
+
+                }
+
+
+
+                }
+                );
+        
+             
+
+
+
+
+
+
+
+         }*/
+
+            [TestCase(1)]
+        public void TestDeletProducer(int id)
+        {/*
+            Medicine xanil = new Medicine() { MedicineName = "Xanil", Heals = "Nátha" };
+            Medicine covax = new Medicine() { MedicineName = "Covax", Heals = "Covid" };
+            */
+
+
+            Assert.That(
+                () =>
+                {
+                    producerLogic.Delete(id);
+                },
+                Throws.Nothing
+                );
+        }
+
+        [TestCase(1)]
+        public void TestDeletMed(int id)
+        {/*
+            Medicine xanil = new Medicine() { MedicineName = "Xanil", Heals = "Nátha" };
+            Medicine covax = new Medicine() { MedicineName = "Covax", Heals = "Covid" };
+            */
+
+
+            Assert.That(
+                () =>
+                {
+                    medLogic.Delete(id);
+                },
+                Throws.Nothing
+                );
+        }
+
+
+        [TestCase(1)]
+        public void TestDeletePatient(int id)
+        {
+                /*
+            Medicine xanil = new Medicine() { MedicineName = "Xanil", Heals = "Nátha" };
+            Medicine covax = new Medicine() { MedicineName = "Covax", Heals = "Covid" };
+                */
+
+
+            Assert.That(
+                () =>
+                {
+                    patientLogic.Delete(id);
+                },
+                Throws.Nothing
+                );
+        }
 
 
 

@@ -54,7 +54,7 @@ namespace KUMF5H_HFT_2021221.Client
                
                 foreach (var item in res)
                 {
-                    Console.WriteLine(new { id = item.Id, name = item.ProducerName });
+                    Console.WriteLine(new { id = item.Id, name = item.ProducerName, item.Location });
                 }
 
 
@@ -70,7 +70,7 @@ namespace KUMF5H_HFT_2021221.Client
 
                 foreach (var item in res)
                 {
-                    Console.WriteLine(new { id = item.Id, name = item.MedicineName, item.Heals });
+                    Console.WriteLine(new { id = item.Id, name = item.MedicineName, item.Heals, item.BasePrice });
                 }
 
 
@@ -306,7 +306,7 @@ namespace KUMF5H_HFT_2021221.Client
                 Console.ReadLine();
             });
 
-            consoleMenu.Add("Search medication for the patients", () => {
+            consoleMenu.Add("Search the patients medication", () => {
                 var res = restService.Get<Threatments>("/stat/GetThreatment");
 
                 foreach (var item in res)
@@ -317,7 +317,7 @@ namespace KUMF5H_HFT_2021221.Client
             });
 
 
-            consoleMenu.Add("Search Producers with the same medication healing", () => {
+            consoleMenu.Add("Search Producers grouped by medicine effect", () => {
                 var res = restService.Get<SameMedicineProducers>("/stat/GetProducerwithsamemedicine");
 
                 foreach (var item in res)
