@@ -28,7 +28,8 @@ namespace KUMF5H_HFT_2021221.Models
 
         // travel proberty
         [NotMapped]
-        
+        [JsonIgnore]
+
         public virtual ICollection<Medicine> Medicines { get; set; }
 
             public Producer()

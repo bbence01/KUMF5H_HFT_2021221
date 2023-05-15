@@ -66,7 +66,7 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void Update(Patient value)
         {
-            patientRepository.Update(value);
+            this.patientRepository.Update(value);
         }
 
        

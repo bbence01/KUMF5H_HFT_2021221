@@ -10,13 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MovieDbApp.WpfClient
+namespace KUMF5H_HFT_2021221.WpfClient
 {
     public class RestService
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "swagger")
+        public RestService(string baseurl, string pingableEndpoint = "/patient")
         {
             bool isOk = false;
             do

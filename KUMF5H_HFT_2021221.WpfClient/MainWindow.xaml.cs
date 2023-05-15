@@ -24,5 +24,27 @@ namespace KUMF5H_HFT_2021221.WpfClient
         {
             InitializeComponent();
         }
+
+        private void PatientButton_Click(object sender, RoutedEventArgs e)
+        {
+            PatientMenuWindow patientMenu = new PatientMenuWindow();
+            patientMenu.Show();
+        }
+        private void MedicineButton_Click(object sender, RoutedEventArgs e)
+        {
+            MedicineMenuWindow patientMenu = new MedicineMenuWindow();
+            patientMenu.Show();
+        }
+        private void ProducerButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProducerMenuWindow patientMenu = new ProducerMenuWindow();
+            patientMenu.Show();
+        }
+        private void StatButton_Click(object sender, RoutedEventArgs e)
+        {
+            StatMenuWindow patientMenu = new StatMenuWindow();
+            patientMenu.Show();
+        }
+
     }
 }

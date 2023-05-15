@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <StackPanel>
+            <Button Name="PatientButton" Click="PatientButton_Click">Patient</Button>
+            <Button Name="MedicineButton" Click="MedicineButton_Click">Medicine</Button>
+            <Button Name="ProducerButton" Click="ProducerButton_Click">Producer</Button>
+            <Button Name="StatButton" Click="StatButton_Click">Stat</Button>
+        </StackPanel>
     </Grid>
 </Window>
