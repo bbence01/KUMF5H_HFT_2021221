@@ -1,4 +1,5 @@
 using KUMF5H_HFT_2021221.Data;
+using KUMF5H_HFT_2021221.Endpoint.Services;
 using KUMF5H_HFT_2021221.Logic;
 using KUMF5H_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -20,6 +21,8 @@ namespace KUMF5H_HFT_2021221.Endpoint
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
+
             services.AddControllers();
 
             services.AddTransient<IPatientLogic, PatientLogic>();
@@ -46,9 +49,15 @@ namespace KUMF5H_HFT_2021221.Endpoint
 
             app.UseRouting();
 
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync("Hello World!");
+                });
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

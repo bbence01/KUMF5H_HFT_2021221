@@ -12,7 +12,7 @@ namespace KUMF5H_HFT_2021221.Client
         {
 
 
-            RestService restService = new RestService("http://localhost:32863");
+            RestService restService = new RestService("http://localhost:5000");
             ConsoleMenu consoleMenu = new ConsoleMenu();
 
             //List

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31727.386
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KUMF5H_HFT_2021221.Models", "KUMF5H_HFT_2021221.Models\KUMF5H_HFT_2021221.Models.csproj", "{A14217F7-A2C0-47A3-BC7A-5FE81CEDB46D}"
 EndProject
@@ -27,6 +27,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KUMF5H_HFT_2021221.Client", "KUMF5H_HFT_2021221.Client\KUMF5H_HFT_2021221.Client.csproj", "{623DEE96-7122-4377-87E3-510D97BFFE39}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KUMF5H_HFT_2021221.Endpoint", "KUMF5H_HFT_2021221.Endpoint\KUMF5H_HFT_2021221.Endpoint.csproj", "{7D4EBCAF-7C9E-41E6-8577-C3F9E9CA92E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KUMF5H_HFT_2021221.FrontendWPF", "KUMF5H_HFT_2021221.FrontendWPF\KUMF5H_HFT_2021221.FrontendWPF.csproj", "{03D26306-78AB-43BE-8173-6A70BFF08586}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{7D4EBCAF-7C9E-41E6-8577-C3F9E9CA92E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D4EBCAF-7C9E-41E6-8577-C3F9E9CA92E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D4EBCAF-7C9E-41E6-8577-C3F9E9CA92E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D26306-78AB-43BE-8173-6A70BFF08586}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D26306-78AB-43BE-8173-6A70BFF08586}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D26306-78AB-43BE-8173-6A70BFF08586}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D26306-78AB-43BE-8173-6A70BFF08586}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

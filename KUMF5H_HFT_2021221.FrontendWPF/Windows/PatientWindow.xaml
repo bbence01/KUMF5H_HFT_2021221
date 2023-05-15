@@ -1,0 +1,31 @@
+﻿<Window x:Class="KUMF5H_HFT_2021221.FrontendWPF.Windows.PatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KUMF5H_HFT_2021221.FrontendWPF.Windows"
+        mc:Ignorable="d"
+        Title="PatientWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding GetCommand}" Content="Get All Patients"/>
+            <Button Command="{Binding AddCommand}" Content="Add Patient"/>
+            <Button Command="{Binding UpdateCommand}" Content="Update Patient"/>
+            <Button Command="{Binding DeleteCommand}" Content="Delete Patient"/>
+        </StackPanel>
+
+        <DataGrid ItemsSource="{Binding Patients}" SelectedItem="{Binding SelectedPatient}" Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
+                <!-- Add other properties of the Patient here -->
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
