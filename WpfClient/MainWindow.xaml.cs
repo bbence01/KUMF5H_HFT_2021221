@@ -1,5 +1,4 @@
-﻿using KUMF5H_HFT_2021221.FrontendWPF.VM;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
-namespace KUMF5H_HFT_2021221.FrontendWPF.Windows
+namespace WpfClient
 {
     /// <summary>
-    /// Interaction logic for ProducerWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class ProducerWindow : Window
+    public partial class MainWindow : Window
     {
-        public ProducerWindow()
+        public MainWindow()
         {
             InitializeComponent();
         }
