@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
+using KUMF5H_HFT_2021221.Endpoint.Services;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,9 +18,12 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
     public class MedicineController : ControllerBase
     {
         IMedicineLogic ml;
-        public MedicineController(IMedicineLogic ml)
+        IHubContext<SignalRHub> hub;
+        public MedicineController(IMedicineLogic ml, IHubContext<SignalRHub> hub)
         {
             this.ml = ml;
+            this.hub = hub;
+
         }
 
         // GET: /medicine       
@@ -41,6 +45,8 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Medicine value)
         {
             ml.Create(value);
+            this.hub.Clients.All.SendAsync("Created", value);
+
         }
 
         // PUT api/<MedicineController>/5
@@ -48,13 +54,18 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Medicine value)
         {
             ml.Update(value);
+            this.hub.Clients.All.SendAsync("Updated", value);
+
         }
 
         // DELETE api/<MedicineController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var patientToDelete = this.ml.GetOne(id);
+
             ml.Delete(id);
+            this.hub.Clients.All.SendAsync("Deleted", patientToDelete);
         }
 
     }

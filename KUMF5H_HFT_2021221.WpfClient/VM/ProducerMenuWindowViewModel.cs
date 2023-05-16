@@ -12,9 +12,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Numerics;
 
-namespace KUMF5H_HFT_2021221.WpfClient
+namespace KUMF5H_HFT_2021221.WpfClient.VM
 {
-    internal class ProducerMenuWindowViewmodel : ObservableRecipient
+    internal class ProducerMenuWindowViewModel : ObservableRecipient
     {
 
         private string errorMessage;
@@ -64,7 +64,7 @@ namespace KUMF5H_HFT_2021221.WpfClient
             }
         }
 
-        public ProducerMenuWindowViewmodel()
+        public ProducerMenuWindowViewModel()
         {
 
             if (!IsInDesignMode)
