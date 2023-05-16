@@ -4,9 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KUMF5H_HFT_2021221.WpfClient"
+         xmlns:vm="clr-namespace:KUMF5H_HFT_2021221.WpfClient.VM"
         mc:Ignorable="d"
-        Title="MedicineMenuWindow" Height="450" Width="800">
+        Title="MedicineMenuWindow" Height="800" Width="800">
+    <Window.DataContext>
+        <vm:MedicineMenuViewModel />
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Medicines}" SelectedItem="{Binding SelectedMedicine}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding MedicineName}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1">
+            <Label Content="Name" Background="LightBlue" Padding="10" />
+            <TextBox Text="{Binding SelectedMedicine.MedicineName}" Padding="10" Margin="0,0,0,30" />
+            <Label Content="BasePrice" Background="LightBlue" Padding="10" />
+            <TextBox Text="{Binding SelectedMedicine.BasePrice}" Padding="10" Margin="0,0,0,30" />
+            <Label Content="ProducerID" Background="LightBlue" Padding="10" />
+            <TextBox Text="{Binding SelectedMedicine.ProducerID}" Padding="10" Margin="0,0,0,30"
+                     />
+            <Label Content="Heals" Background="LightBlue" Padding="10" />
+
+            <TextBox Text="{Binding SelectedMedicine.Heals}" Padding="10" Margin="0,0,0,30"
+                     />
+
+            <Button Content="Create " Command="{Binding CreateCommand}" Margin="10" Padding="10" />
+            <Button Content="Delete " Command="{Binding DeleteCommand}" Margin="10" Padding="10" />
+            <Button Content="Update " Command="{Binding UpdateCommand}" Margin="10" Padding="10" />
+            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+        </StackPanel>
     </Grid>
 </Window>

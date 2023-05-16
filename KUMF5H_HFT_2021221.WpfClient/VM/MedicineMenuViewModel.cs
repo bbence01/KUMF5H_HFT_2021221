@@ -11,10 +11,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Numerics;
+using Newtonsoft.Json.Linq;
 
-namespace KUMF5H_HFT_2021221.WpfClient
+namespace KUMF5H_HFT_2021221.WpfClient.VM
 {
-    internal class PatientMenuWindowViewModel : ObservableRecipient
+    internal class MedicineMenuViewModel : ObservableRecipient
     {
 
         private string errorMessage;
@@ -25,23 +26,23 @@ namespace KUMF5H_HFT_2021221.WpfClient
             set { SetProperty(ref errorMessage, value); }
         }
 
-        public RestCollection<Patient> Patients { get; set; }
+        public RestCollection<Medicine> Medicines { get; set; }
 
-        private Patient selectedPatient;
+        private Medicine selectedMedicine;
 
-        public Patient SelectedPatient
+        public Medicine SelectedMedicine
         {
-            get { return selectedPatient; }
+            get { return selectedMedicine; }
             set
             {
                 if (value != null)
                 {
-                    selectedPatient = new Patient()
+                    selectedMedicine = new Medicine()
                     {
-                        PatientName = value.PatientName,
+                        MedicineName = value.MedicineName,
                         Id = value.Id,
-                        Illness = value.Illness,
-                        MedicineID = value.MedicineID,
+                        BasePrice = value.BasePrice,
+                        ProducerID = value.ProducerID
                     };
                     OnPropertyChanged();
                     (DeleteCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -65,20 +66,20 @@ namespace KUMF5H_HFT_2021221.WpfClient
             }
         }
 
-        public PatientMenuWindowViewModel()
+        public MedicineMenuViewModel()
         {
 
             if (!IsInDesignMode)
             {
-                Patients = new RestCollection<Patient>("http://localhost:5000/", "patient", "hub");
+                Medicines = new RestCollection<Medicine>("http://localhost:5000/", "medicine", "hub");
                 CreateCommand = new RelayCommand(() =>
                 {
-                    Patients.Add(new Patient()
+                    Medicines.Add(new Medicine()
                     {
-                        PatientName = SelectedPatient.PatientName,
-                        Illness = SelectedPatient.Illness,
-                        MedicineID = SelectedPatient.MedicineID
-                        
+                        MedicineName = SelectedMedicine.MedicineName,
+                        BasePrice = SelectedMedicine.BasePrice,
+                        ProducerID = SelectedMedicine.ProducerID
+
                     });
                 })
                 {
@@ -88,7 +89,7 @@ namespace KUMF5H_HFT_2021221.WpfClient
                 {
                     try
                     {
-                        Patients.Update(SelectedPatient);
+                        Medicines.Update(SelectedMedicine);
                     }
                     catch (ArgumentException ex)
                     {
@@ -99,13 +100,13 @@ namespace KUMF5H_HFT_2021221.WpfClient
 
                 DeleteCommand = new RelayCommand(() =>
                 {
-                    Patients.Delete(SelectedPatient.Id);
+                    Medicines.Delete(selectedMedicine.Id);
                 },
                 () =>
                 {
-                    return SelectedPatient != null;
+                    return SelectedMedicine != null;
                 });
-                SelectedPatient = new Patient();
+                SelectedMedicine = new Medicine();
             }
         }
 

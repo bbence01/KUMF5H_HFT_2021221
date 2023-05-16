@@ -69,7 +69,7 @@ namespace KUMF5H_HFT_2021221.WpfClient.VM
 
             if (!IsInDesignMode)
             {
-                Producers = new RestCollection<Producer>("http://localhost:5000/", "producer");
+                Producers = new RestCollection<Producer>("http://localhost:5000/", "producer", "hub");
                 CreateCommand = new RelayCommand(() =>
                 {
                     Producers.Add(new Producer()

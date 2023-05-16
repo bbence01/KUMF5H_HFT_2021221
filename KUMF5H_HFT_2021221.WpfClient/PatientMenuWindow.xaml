@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KUMF5H_HFT_2021221.WpfClient"
         mc:Ignorable="d"
-        Title="PatientMenuWindow" Height="450" Width="800">
+        Title="PatientMenuWindow" Height="800" Width="800">
     <Window.DataContext>
         <local:PatientMenuWindowViewModel />
     </Window.DataContext>
