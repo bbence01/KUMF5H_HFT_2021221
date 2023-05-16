@@ -4,9 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KUMF5H_HFT_2021221.WpfClient"
+        xmlns:vm="clr-namespace:KUMF5H_HFT_2021221.WpfClient.VM"
+
         mc:Ignorable="d"
         Title="StatMenuWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:StatMenuWindowViewModel />
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding AverageResults}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />                                
+                            </Grid.RowDefinitions>
+                            <Label Content="{Binding ProducerName}" FontSize="14" FontWeight="Bold" />
+                            <Label Content="{Binding AveragePrice}" ContentStringFormat="AveragePrice: {0}" Grid.Row="1" />                        
+                          
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1">
+            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+        </StackPanel>
     </Grid>
 </Window>
