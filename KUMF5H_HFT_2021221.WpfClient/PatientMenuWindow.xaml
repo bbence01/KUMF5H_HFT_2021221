@@ -17,13 +17,19 @@
         <ListBox ItemsSource="{Binding Patients}" SelectedItem="{Binding SelectedPatient}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding PatientName}" />
+                    <Label Content="{Binding PatientName}" />                 
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
             <Label Content="Name" Background="LightBlue" Padding="10" />
             <TextBox Text="{Binding SelectedPatient.PatientName}" Padding="10" Margin="0,0,0,30" />
+            <Label Content="Illness" Background="LightBlue" Padding="10" />
+
+            <TextBox Text="{Binding SelectedPatient.Illness}" Padding="10" Margin="0,0,0,30" />
+            <Label Content="MedicineID" Background="LightBlue" Padding="10" />
+
+            <TextBox Text="{Binding SelectedPatient.MedicineID}" Padding="10" Margin="0,0,0,30" />
             <Button Content="Create " Command="{Binding CreateCommand}" Margin="10" Padding="10" />
             <Button Content="Delete " Command="{Binding DeleteCommand}" Margin="10" Padding="10" />
             <Button Content="Update " Command="{Binding UpdateCommand}" Margin="10" Padding="10" />

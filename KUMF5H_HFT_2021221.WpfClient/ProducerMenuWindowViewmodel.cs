@@ -14,7 +14,7 @@ using System.Numerics;
 
 namespace KUMF5H_HFT_2021221.WpfClient
 {
-    internal class PatientMenuWindowViewModel : ObservableRecipient
+    internal class ProducerMenuWindowViewmodel : ObservableRecipient
     {
 
         private string errorMessage;
@@ -25,23 +25,22 @@ namespace KUMF5H_HFT_2021221.WpfClient
             set { SetProperty(ref errorMessage, value); }
         }
 
-        public RestCollection<Patient> Patients { get; set; }
+        public RestCollection<Producer> Producers { get; set; }
 
-        private Patient selectedPatient;
+        private Producer selectedProducer;
 
-        public Patient SelectedPatient
+        public Producer SelectedProducer
         {
-            get { return selectedPatient; }
+            get { return selectedProducer; }
             set
             {
                 if (value != null)
                 {
-                    selectedPatient = new Patient()
+                    selectedProducer = new Producer()
                     {
-                        PatientName = value.PatientName,
+                        ProducerName = value.ProducerName,
                         Id = value.Id,
-                        Illness = value.Illness,
-                        MedicineID = value.MedicineID,
+                        Location = value.Location,
                     };
                     OnPropertyChanged();
                     (DeleteCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -65,20 +64,19 @@ namespace KUMF5H_HFT_2021221.WpfClient
             }
         }
 
-        public PatientMenuWindowViewModel()
+        public ProducerMenuWindowViewmodel()
         {
 
             if (!IsInDesignMode)
             {
-                Patients = new RestCollection<Patient>("http://localhost:5000/", "patient");
+                Producers = new RestCollection<Producer>("http://localhost:5000/", "producer");
                 CreateCommand = new RelayCommand(() =>
                 {
-                    Patients.Add(new Patient()
+                    Producers.Add(new Producer()
                     {
-                        PatientName = SelectedPatient.PatientName,
-                        Illness = SelectedPatient.Illness,
-                        MedicineID = SelectedPatient.MedicineID
-                        
+                        ProducerName = SelectedProducer.ProducerName,
+                        Location = SelectedProducer.Location,
+
                     });
                 })
                 {
@@ -88,7 +86,7 @@ namespace KUMF5H_HFT_2021221.WpfClient
                 {
                     try
                     {
-                        Patients.Update(SelectedPatient);
+                        Producers.Update(SelectedProducer);
                     }
                     catch (ArgumentException ex)
                     {
@@ -99,13 +97,13 @@ namespace KUMF5H_HFT_2021221.WpfClient
 
                 DeleteCommand = new RelayCommand(() =>
                 {
-                    Patients.Delete(SelectedPatient.Id);
+                    Producers.Delete(SelectedProducer.Id);
                 },
                 () =>
                 {
-                    return SelectedPatient != null;
+                    return SelectedProducer != null;
                 });
-                SelectedPatient = new Patient();
+                SelectedProducer = new Producer();
             }
         }
 
