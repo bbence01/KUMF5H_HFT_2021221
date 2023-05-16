@@ -27,15 +27,31 @@ namespace KUMF5H_HFT_2021221.WpfClient.VM
             get { return errorMessage; }
             set { SetProperty(ref errorMessage, value); }
         }
+        private object _selectedCollection;
 
         public List<AverageResult> AverageResultsList { get; set; }
+        public List<LocationResults> LocationResultssList { get; set; }
 
         // public RestCollection<AverageResult> AverageResults { get; set; }
 
         public ObservableCollection<AverageResult> AverageResults { get; set; }
+        public ObservableCollection<LocationResults> LocationResultss { get; set; }
 
 
+        public ObservableCollection<string> CollectionNames { get; } = new ObservableCollection<string> { "AverageResults", "LocationResultss" };
 
+        public object SelectedCollection
+        {
+            get { return _selectedCollection; }
+            set
+            {
+                if (_selectedCollection != value)
+                {
+                    _selectedCollection = value;
+                    OnPropertyChanged(nameof(SelectedCollection));
+                }
+            }
+        }
 
         public static bool IsInDesignMode
         {
@@ -48,12 +64,17 @@ namespace KUMF5H_HFT_2021221.WpfClient.VM
 
         public StatMenuWindowViewModel()
         {
+            CollectionNames = new ObservableCollection<string>
+        {
+            "AverageResults",
+            "LocationResultss",
+
+        };
 
             if (!IsInDesignMode)
             {
-                AverageResults= new ObservableCollection<AverageResult>();
+                AverageResults = new ObservableCollection<AverageResult>();
 
-              //  AverageResults = new RestCollection<AverageResult>("http://localhost:5000/", "stat");
 
                 AverageResultsList = restService.Get<AverageResult>("/stat/AvarageByProducers");
 
@@ -62,11 +83,29 @@ namespace KUMF5H_HFT_2021221.WpfClient.VM
                     AverageResults.Add(item);
                 }
 
+                LocationResultss = new ObservableCollection<LocationResults>();
+
+
+                LocationResultssList = restService.Get<LocationResults>("/stat/GetLocations");
+
+                foreach (var item in LocationResultssList)
+                {
+                    LocationResultss.Add(item);
+                }
+
 
 
 
             }
         }
+
+        public class Item
+        {
+            public string Name { get; set; }
+
+            public string Description { get; set; }
+        }
+
 
 
 

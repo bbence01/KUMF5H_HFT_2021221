@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using KUMF5H_HFT_2021221.WpfClient.VM;
 
 namespace KUMF5H_HFT_2021221.WpfClient
 {
@@ -23,5 +24,21 @@ namespace KUMF5H_HFT_2021221.WpfClient
         {
             InitializeComponent();
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var viewModel = DataContext as StatMenuWindowViewModel;
+
+            switch (viewModel.SelectedCollection as string)
+            {
+                case "AverageResults":
+                    viewModel.SelectedCollection = viewModel.AverageResults;
+                    break;
+                case "LocationResultss":
+                    viewModel.SelectedCollection = viewModel.LocationResultss;
+                    break;
+            }
+        }
+
     }
 }

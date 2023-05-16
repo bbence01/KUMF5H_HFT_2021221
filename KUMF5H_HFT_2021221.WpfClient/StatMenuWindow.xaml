@@ -11,34 +11,38 @@
     <Window.DataContext>
         <vm:StatMenuWindowViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <vm:ResultsTemplateSelector x:Key="ResultsTemplateSelector" />
+
+        <DataTemplate x:Key="AverageResultTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding ProducerName}" />
+                <TextBlock Text="{Binding AveragePrice}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="LocationResultsTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding ProducersName}" />
+                <TextBlock Text="{Binding MedicineName}" />
+                <TextBlock Text="{Binding Location}" />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding AverageResults}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="1*" />                                
-                            </Grid.RowDefinitions>
-                            <Label Content="{Binding ProducerName}" FontSize="14" FontWeight="Bold" />
-                            <Label Content="{Binding AveragePrice}" ContentStringFormat="AveragePrice: {0}" Grid.Row="1" />                        
-                          
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Grid.Column="1">
-            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ComboBox Grid.Row="0" 
+              ItemsSource="{Binding CollectionNames}"
+              SelectedItem="{Binding SelectedCollection}" 
+              SelectionChanged="ComboBox_SelectionChanged"/>
+
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding SelectedCollection}">
+            <!-- Define ItemTemplate based on your AverageResult and LocationResults classes -->
+        </ItemsControl>
     </Grid>
 </Window>
