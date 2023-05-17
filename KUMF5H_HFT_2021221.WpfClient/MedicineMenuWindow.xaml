@@ -10,6 +10,26 @@
     <Window.DataContext>
         <vm:MedicineMenuViewModel />
     </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="DarkSlateGray"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="SkyBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="SkyBlue"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>

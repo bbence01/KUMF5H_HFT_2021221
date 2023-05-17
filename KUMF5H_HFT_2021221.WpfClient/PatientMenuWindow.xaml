@@ -9,30 +9,54 @@
     <Window.DataContext>
         <local:PatientMenuWindowViewModel />
     </Window.DataContext>
-    <Grid>
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="DarkSlateGray"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="SkyBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="SkyBlue"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Patients}" SelectedItem="{Binding SelectedPatient}">
+
+        <ListBox ItemsSource="{Binding Patients}" SelectedItem="{Binding SelectedPatient}" Background="White" BorderBrush="LightGray">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding PatientName}" />                 
+                    <Label Content="{Binding PatientName}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Column="1">
-            <Label Content="Name" Background="LightBlue" Padding="10" />
-            <TextBox Text="{Binding SelectedPatient.PatientName}" Padding="10" Margin="0,0,0,30" />
-            <Label Content="Illness" Background="LightBlue" Padding="10" />
 
-            <TextBox Text="{Binding SelectedPatient.Illness}" Padding="10" Margin="0,0,0,30" />
-            <Label Content="MedicineID" Background="LightBlue" Padding="10" />
+        <StackPanel Grid.Column="1" Margin="20">
+            <Label Content="Name" Padding="10" />
+            <TextBox Text="{Binding SelectedPatient.PatientName}" Padding="10" Margin="0,0,0,20" />
 
-            <TextBox Text="{Binding SelectedPatient.MedicineID}" Padding="10" Margin="0,0,0,30" />
+            <Label Content="Illness" Padding="10" />
+            <TextBox Text="{Binding SelectedPatient.Illness}" Padding="10" Margin="0,0,0,20" />
+
+            <Label Content="MedicineID" Padding="10" />
+            <TextBox Text="{Binding SelectedPatient.MedicineID}" Padding="10" Margin="0,0,0,20" />
+
             <Button Content="Create " Command="{Binding CreateCommand}" Margin="10" Padding="10" />
             <Button Content="Delete " Command="{Binding DeleteCommand}" Margin="10" Padding="10" />
             <Button Content="Update " Command="{Binding UpdateCommand}" Margin="10" Padding="10" />
+
             <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
         </StackPanel>
     </Grid>

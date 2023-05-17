@@ -6,12 +6,31 @@
         xmlns:local="clr-namespace:KUMF5H_HFT_2021221.WpfClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="800">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="DarkSlateGray"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="SkyBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="SkyBlue"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <StackPanel>
-            <Button Name="PatientButton" Click="PatientButton_Click">Patient</Button>
-            <Button Name="MedicineButton" Click="MedicineButton_Click">Medicine</Button>
-            <Button Name="ProducerButton" Click="ProducerButton_Click">Producer</Button>
-            <Button Name="StatButton" Click="StatButton_Click">Stat</Button>
+        <StackPanel Margin="150">
+            <Button Name="PatientButton" Margin="10" Click="PatientButton_Click">Patient</Button>
+            <Button Name="MedicineButton" Margin="10" Click="MedicineButton_Click">Medicine</Button>
+            <Button Name="ProducerButton" Margin="10" Click="ProducerButton_Click">Producer</Button>
+            <Button Name="StatButton" Margin="10" Click="StatButton_Click">Stat</Button>
         </StackPanel>
     </Grid>
 </Window>
