@@ -21,10 +21,20 @@ namespace KUMF5H_HFT_2021221.Endpoint
 {
     public class Startup
     {
+
+
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+
+
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+
+
 
         public IConfiguration Configuration { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -44,6 +54,28 @@ namespace KUMF5H_HFT_2021221.Endpoint
             services.AddTransient<IProducerLogic, Producerlogic>();
             services.AddTransient<IProducerReposiotory, Producerrepository>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  policy =>
+                                  {
+                                      policy.WithOrigins("http://example.com",
+                                                          "http://www.contoso.com",
+                                                          "http://127.0.0.1:5500",
+                                                          "http://127.0.0.1",
+                                                          "127.0.0.1",
+                                                          "localhost"
+
+                                                          )
+                                                  .AllowAnyHeader()
+                                                  .AllowAnyMethod();
+            });
+            });
+
+
+
+
+
             services.AddSignalR();
 
             services.AddControllers();
@@ -52,11 +84,21 @@ namespace KUMF5H_HFT_2021221.Endpoint
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KUMF5H_HFT_2021221.Endpoint", Version = "v1" });
             });
 
+
+
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+
+
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -74,7 +116,10 @@ namespace KUMF5H_HFT_2021221.Endpoint
             }));
 
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseRouting();
+
 
             /*
             app.UseEndpoints(endpoints =>
@@ -86,6 +131,9 @@ namespace KUMF5H_HFT_2021221.Endpoint
                 endpoints.MapControllers();
                 endpoints.MapHub<SignalRHub>("/hub");
             });*/
+
+            app.UseCors(MyAllowSpecificOrigins);
+
 
             app.UseAuthorization();
 

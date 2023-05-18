@@ -30,7 +30,7 @@
             <Button Name="PatientButton" Margin="10" Click="PatientButton_Click">Patient</Button>
             <Button Name="MedicineButton" Margin="10" Click="MedicineButton_Click">Medicine</Button>
             <Button Name="ProducerButton" Margin="10" Click="ProducerButton_Click">Producer</Button>
-            <Button Name="StatButton" Margin="10" Click="StatButton_Click">Stat</Button>
+            <Button Name="StatButton" Margin="10" Click="StatButton_Click">Stats</Button>
         </StackPanel>
     </Grid>
 </Window>

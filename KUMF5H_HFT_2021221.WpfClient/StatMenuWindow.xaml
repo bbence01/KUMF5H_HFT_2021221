@@ -5,49 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KUMF5H_HFT_2021221.WpfClient"
         xmlns:vm="clr-namespace:KUMF5H_HFT_2021221.WpfClient.VM"
-
         mc:Ignorable="d"
-        Title="StatMenuWindow" Height="450" Width="800">
+        Title="StatMenuWindow" Height="450" Width="800" Background="#F0F0F0">
+
     <Window.DataContext>
         <vm:StatMenuWindowViewModel />
     </Window.DataContext>
-    
+
     <Window.Resources>
         <vm:ResultsTemplateSelector x:Key="ResultsTemplateSelector" />
 
         <DataTemplate x:Key="AverageResultTemplate">
             <StackPanel>
-                <TextBlock Text="{Binding ProducerName}" />
-                <TextBlock Text="{Binding AveragePrice}" />
+                <TextBlock Text="{Binding ProducerName}" FontSize="14" Foreground="DarkSlateGray"/>
+                <TextBlock Text="{Binding AveragePrice}" FontSize="14" Foreground="DarkSlateGray"/>
             </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="LocationResultsTemplate">
             <StackPanel>
-                <TextBlock Text="{Binding ProducersName}" />
-                <TextBlock Text="{Binding MedicineName}" />
-                <TextBlock Text="{Binding Location}" />
+                <TextBlock Text="{Binding ProducersName}" FontSize="14" Foreground="DarkSlateGray"/>
+                <TextBlock Text="{Binding MedicineName}" FontSize="14" Foreground="DarkSlateGray"/>
+                <TextBlock Text="{Binding Location}" FontSize="14" Foreground="DarkSlateGray"/>
             </StackPanel>
         </DataTemplate>
 
-        <Style TargetType="Label">
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Height" Value="30"/>
             <Setter Property="Foreground" Value="DarkSlateGray"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
 
-        <Style TargetType="TextBox">
-            <Setter Property="Background" Value="WhiteSmoke"/>
+        <Style TargetType="ItemsControl">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="White"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="LightGray"/>
         </Style>
-
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="SkyBlue"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="SkyBlue"/>
-        </Style>
-
     </Window.Resources>
 
     <Grid>
@@ -61,8 +56,9 @@
               SelectedItem="{Binding SelectedCollection}" 
               SelectionChanged="ComboBox_SelectionChanged"/>
 
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding SelectedCollection}">
-            <!-- Define ItemTemplate based on your AverageResult and LocationResults classes -->
+        <ItemsControl Grid.Row="1" 
+                      ItemsSource="{Binding SelectedCollection}" 
+                      ItemTemplateSelector="{StaticResource ResultsTemplateSelector}">
         </ItemsControl>
     </Grid>
 </Window>

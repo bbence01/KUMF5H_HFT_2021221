@@ -15,6 +15,10 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.2" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+    <PackageReference Include="ModernUI.WPF" Version="1.0.9" />
+    <PackageReference Include="ModernWPF" Version="1.4.6" />
+    <PackageReference Include="ModernWpf.Toolkit" Version="0.1.0" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
   </ItemGroup>
 
 
