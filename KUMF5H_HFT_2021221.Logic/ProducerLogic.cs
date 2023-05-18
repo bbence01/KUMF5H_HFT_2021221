@@ -4,10 +4,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace KUMF5H_HFT_2021221.Logic
 {
-  
+
 
     public class Producerlogic : IProducerLogic
     {
@@ -25,7 +26,7 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void Create(Producer newProducer)
         {
-            if (newProducer.ProducerName ==null||newProducer.ProducerName =="")
+            if (newProducer.ProducerName == null || newProducer.ProducerName == "")
                 throw new ArgumentException(nameof(newProducer), "Producer Name is needed");
             producerRepository.Create(newProducer);
 
@@ -41,8 +42,8 @@ namespace KUMF5H_HFT_2021221.Logic
 
         public void Delete(int id)
         {
-            
-          
+
+
 
             producerRepository.Delete(id);
         }
@@ -62,9 +63,18 @@ namespace KUMF5H_HFT_2021221.Logic
             if (id == null || id <= 0)
                 throw new ArgumentException(nameof(id), "ID must be positive");
 
-            List < Producer > pr = new List<Producer>();
+            List<Producer> pr = new List<Producer>();
             pr.Add(producerRepository.GetOne(id));
             return pr;
+        }
+
+        public Producer GetOneitem(int id)
+        {
+            if (id == null || id <= 0)
+                throw new ArgumentException(nameof(id), "ID must be positive");
+
+            return this.producerRepository.GetOne(id);
+           
         }
 
         public void Update(Producer value)
@@ -93,6 +103,8 @@ namespace KUMF5H_HFT_2021221.Logic
         
 
         }*/
+
+      
 
     }
 }

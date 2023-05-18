@@ -3,6 +3,7 @@ using KUMF5H_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,8 @@ namespace KUMF5H_HFT_2021221.Logic
     {
         IEnumerable<Producer> GetAll();
         IEnumerable<Producer> GetOne(int id);
+        Producer GetOneitem(int id);
+
         void ChangeProducerName(int id, string newProducerName);
 
         void Create(Producer newProducer);

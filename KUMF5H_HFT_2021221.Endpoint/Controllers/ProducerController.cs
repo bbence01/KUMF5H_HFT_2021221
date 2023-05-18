@@ -46,7 +46,7 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Producer value)
         {
             pl.Create(value);
-            this.hub.Clients.All.SendAsync("Created", value);
+            this.hub.Clients.All.SendAsync("ProducerCreated", value);
 
         }
 
@@ -55,7 +55,7 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Producer value)
         {
             pl.Update(value);
-            this.hub.Clients.All.SendAsync("Updated", value);
+            this.hub.Clients.All.SendAsync("ProducerUpdated", value);
 
         }
 
@@ -63,10 +63,10 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var patientToDelete = this.pl.GetOne(id);
-
+            var ProducerToDelete = this.pl.GetOneitem(id);
+           
             pl.Delete(id);
-            this.hub.Clients.All.SendAsync("Deleted", patientToDelete);
+            this.hub.Clients.All.SendAsync("ProducerDeleted", ProducerToDelete);
         }
     }
 }
