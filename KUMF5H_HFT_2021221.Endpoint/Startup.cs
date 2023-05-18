@@ -64,11 +64,17 @@ namespace KUMF5H_HFT_2021221.Endpoint
                                                           "http://127.0.0.1:5500",
                                                           "http://127.0.0.1",
                                                           "127.0.0.1",
-                                                          "localhost"
-
+                                                             "127.0.0.1:5500",
+                                                          "localhost",
+                                                           "localhost:5500",
+                                                          "http://localhost",
+                                                           "http://localhost:5500",
+                                                            "http://localhost:5000"
                                                           )
                                                   .AllowAnyHeader()
-                                                  .AllowAnyMethod();
+                                                  .AllowAnyMethod()
+                                                  .SetIsOriginAllowed((hosr) =>true)
+                                                    .AllowCredentials();
             });
             });
 
@@ -140,7 +146,7 @@ namespace KUMF5H_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<SignalRHub>("/hub");
+                endpoints.MapHub<SignalRHub>("/hub").RequireCors(MyAllowSpecificOrigins);
             });
         }
     }
