@@ -42,7 +42,9 @@ namespace KUMF5H_HFT_2021221.WpfClient.VM
                         MedicineName = value.MedicineName,
                         Id = value.Id,
                         BasePrice = value.BasePrice,
-                        ProducerID = value.ProducerID
+                        ProducerID = value.ProducerID,
+                         Heals = value.Heals
+
                     };
                     OnPropertyChanged();
                     (DeleteCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -78,7 +80,8 @@ namespace KUMF5H_HFT_2021221.WpfClient.VM
                     {
                         MedicineName = SelectedMedicine.MedicineName,
                         BasePrice = SelectedMedicine.BasePrice,
-                        ProducerID = SelectedMedicine.ProducerID
+                        ProducerID = SelectedMedicine.ProducerID,
+                        Heals = SelectedMedicine.Heals,
 
                     });
                 })
@@ -100,7 +103,7 @@ namespace KUMF5H_HFT_2021221.WpfClient.VM
 
                 DeleteCommand = new RelayCommand(() =>
                 {
-                    Medicines.Delete(selectedMedicine.Id);
+                    Medicines.Delete(SelectedMedicine.Id);
                 },
                 () =>
                 {

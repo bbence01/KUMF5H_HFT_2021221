@@ -45,7 +45,7 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Medicine value)
         {
             ml.Create(value);
-            this.hub.Clients.All.SendAsync("Created", value);
+            this.hub.Clients.All.SendAsync("MedicineCreated", value);
 
         }
 
@@ -54,7 +54,7 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Medicine value)
         {
             ml.Update(value);
-            this.hub.Clients.All.SendAsync("Updated", value);
+            this.hub.Clients.All.SendAsync("MedicineUpdated", value);
 
         }
 
@@ -63,9 +63,10 @@ namespace KUMF5H_HFT_2021221.Endpoint.Controllers
         public void Delete(int id)
         {
             var patientToDelete = this.ml.GetOne(id);
+            var onepatient = patientToDelete.First();
 
             ml.Delete(id);
-            this.hub.Clients.All.SendAsync("Deleted", patientToDelete);
+            this.hub.Clients.All.SendAsync("MedicineDeleted", onepatient);
         }
 
     }
